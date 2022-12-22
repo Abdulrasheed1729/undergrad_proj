@@ -1,5 +1,5 @@
 asy:
-  asy -V pdf asy/hello.asy
+    asy -V pdf asy/hello.asy
 
 tex:
   
