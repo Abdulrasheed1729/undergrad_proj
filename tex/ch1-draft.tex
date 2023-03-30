@@ -1,6 +1,15 @@
 \documentclass[a4paper, 12pt]{scrartcl}
 
-\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\disp}{\displaystyle}
+
 
 \title{Chapter One Draft}
 \author{Abdulrasheed Fawole}
@@ -17,10 +26,60 @@
 
     However, developing the technologies necessary for autonomous robots is a formidable undertaking with deep interweaved ramifications in automated reasoning, control and perceprion, which raises many important problems, one of them which is \textbf{motion planning}, which is the major theme of this project work. This problem centrals loosely on the question ''How can a robot decide what motions to perform in order to achieve goal arrangements of physical objects?'' and this capability is paramount since by the definition of robot it accomplishes tasks by moving in real world.
     
-    This work focus on the topological study of robot motion planning algorithms using results from algebraic topology and some other important areas of mathematics, and we also give pratical computational simulation of robotic manipulator using the python and C++ programming languages, the robotic operating system (ros) and Gazebo virtual robot simulator running on an Ubuntu Linux machine.
+    This work focus on the topological study of robot motion planning algorithms using results from algebraic topology and some other important areas of mathematics, and we also give pratical computational simulation of robotic manipulator using the python programming languages, the robotic operating system (ros) and Gazebo virtual robot simulator running on an Ubuntu Linux machine.
     
+    %%%%TODO add the references to each of the mentioned works
     \section{Literature Review}
-    
+    The study of Topological robotics started in 2003-2004 by Michael Farber. His motivation was using tool frrom algebraic topology, whereby he considered a path connected topological space whose path space is equipped with the compact open topology. Using this the motion planning algorithm of any mechanical robot that moves in a configuration space to be a funcion of input and output.
+
+    In the earlier work of Farber he introduces an homotopy invariant called Topological complexity, which measures the minimum number of of continuous motions required to move a robot from one configuration to another in a given configuration space. In this founding paper he was only concerned with the departing motion of the robot and not the returning motion, but made up for this in a subsequent work with M. Grant where the concept \textit{symmetric topological complexity} was introduced. This studies when the departing and returning motion of the robot are the same.
+
+    Using the motivation of Farber and Grant, Mamouni and Derfourfi considered the case when the robot is allowed to take any arbitrary way to come back to its departure point, as in the case of the motion of drone, or an unmanned air-plane, or a guided TV camera, they studied homotopically and topologically the concept of \textit{loop motion planning algorithm (LMPA)}  and define the \textit{loop topological complexity} which a generalization of the work of Farber and Grant. 
+
+    \section{Some Basic definitions}
+    In this section we introduced the basic definitions to be used the next sections and chapters of this project work.
+
+    \begin{defn}[Topological Space]
+        Let $X$ be a nonempty set and $\tau$ be the collection of open subsets of $X$ satisfying the following conditions
+        \begin{itemize}
+            \item[1.] $\emptyset, X \in \tau$
+            \item[2.] the union of every class of set in $\tau$ is a set in $\tau$
+            \item[3.] the intersection of every finite class of sets in $\tau$ is a set in $\tau$
+        \end{itemize}
+        $\tau$ is called the topology on $X$ and the ordered pair $(X, \tau)$ is called a topological space. When $\tau$ is out of context we use ordinary $X$.
+    \end{defn}
+
+    \begin{defn}[Subspace]
+        Let $(X, \tau)$ be a topological space and\\
+         $Y \subset X$ be nonempty.\\
+        The relative topology or subspace topology on $Y, \tau_Y$ is defined as the class of all intersections with $Y$ of open sets of $Y$
+        \[
+            \tau_Y = \{Y \cap U  \mid U \in \tau\}
+        \]
+        The pair $(Y, \tau_Y)$ is called a topological subspace of $(X, \tau)$.
+    \end{defn}
+
+    \subsubsection*{Some examples of topological spaces}
+    \begin{enumerate}
+        \item Let $X = \{x,y,z\}$ and $\tau = \{X, \emptyset, \{x\}, \{x,y\}, \{x,z\}\}$. Then $(X, \tau)$ is a topological space.
+        \item For any nonempty set $X$, let $\tau$ be the class of all  subsets of $X$. Then $(X, \tau)$ is a topological space.
+    \end{enumerate}
+
+    \begin{defn}
+        Let $X$ be a topological space and $x \in X$ 
+        \begin{enumerate}
+            \item An open neighbourhood of $x$ is an open subset of containing $x$.
+            \item A neighbourhood of $x, N(x)$ is a subset of $X$ containing an open neighbourhood. i.e. N (x) is a neighbourhood of x if there exists an open set Q such that $x \in Q \subset N (x)$.
+            \item The class of all neighbourhoods of $x \in X$ denoted by $N_x$ is called the neighbourhood system of x.
+        \end{enumerate}
+    \end{defn}
+
+    \begin{defn}[Continuous functions]
+        Let $X,Y$ be topological spaces and \\
+        $\disp f: X \lra Y$ is a mapping, $f$ is said to be continuous if $\disp f^{-1}(G)$ is open in $X$ whenever $G$ is open in $Y$.
+
+        That is, for $(X, \tau_1),(Y, \tau_2,), f$ is continuous if $f^{-1} (G) \subset \tau_1$ whenever $G \in \tau_2$ or the inverse image of an open set is open under a continuous function.
+    \end{defn}
     
     
     
