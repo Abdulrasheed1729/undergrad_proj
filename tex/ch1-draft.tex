@@ -1,17 +1,20 @@
 \documentclass[a4paper, 12pt]{scrartcl}
 
 \usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{geometry}
 
 \theoremstyle{definition}
 \newtheorem{thm}{Theorem}[section]
-\newtheorem{defn}{Definition}[thm]
+\newtheorem{defn}{Definition}[section]
+\newtheorem*{notn}{Notation}
 
 \newcommand{\ra}{\rightarrow}
 \newcommand{\lra}{\longrightarrow}
 \newcommand{\disp}{\displaystyle}
+\newcommand{\htp}[1]{\underset{#1}{\simeq}} %%% Homotopy of two functions in
 
 
-\title{Chapter One Draft}
+\title{Topology of Motion Planning Algorithms}
 \author{Abdulrasheed Fawole}
 
 
@@ -30,11 +33,13 @@
     
     %%%%TODO add the references to each of the mentioned works
     \section{Literature Review}
-    The study of Topological robotics started in 2003-2004 by Michael Farber. His motivation was using tool frrom algebraic topology, whereby he considered a path connected topological space whose path space is equipped with the compact open topology. Using this the motion planning algorithm of any mechanical robot that moves in a configuration space to be a funcion of input and output.
+    The study of Topological robotics started in 2003-2004 by Michael Farber. His motivation was using tool from algebraic topology, whereby he considered a path connected topological space whose path space is equipped with the compact open topology. Using this the motion planning algorithm of any mechanical robot that moves in a configuration space is represented to be the funcion of input and output with the input being the two points (that is the current location of the robot and its destination) and the output is the path to be taken by the robot.
 
-    In the earlier work of Farber he introduces an homotopy invariant called Topological complexity, which measures the minimum number of of continuous motions required to move a robot from one configuration to another in a given configuration space. In this founding paper he was only concerned with the departing motion of the robot and not the returning motion, but made up for this in a subsequent work with M. Grant where the concept \textit{symmetric topological complexity} was introduced. This studies when the departing and returning motion of the robot are the same.
+    In the earlier work of Farber he introduces an homotopy invariant called Topological complexity, which measures the minimum number of continuous motions required to move a robot from one configuration to another in a given configuration space. In this founding paper he was only concerned with the departing motion of the robot and not the returning motion, but made up for this in a subsequent work with M. Grant where the concept \textit{symmetric topological complexity} was introduced. This studies when the departing and returning motion of the robot are the same.
 
-    Using the motivation of Farber and Grant, Mamouni and Derfourfi considered the case when the robot is allowed to take any arbitrary way to come back to its departure point, as in the case of the motion of drone, or an unmanned air-plane, or a guided TV camera, they studied homotopically and topologically the concept of \textit{loop motion planning algorithm (LMPA)}  and define the \textit{loop topological complexity} which a generalization of the work of Farber and Grant. 
+    Using the motivation of Farber and Grant, Mamouni and Derfourfi considered the case when the robot is allowed to take any arbitrary path to come back to its departure point, as in the case of the motion of drone, or an unmanned air-plane, or a guided TV camera, they studied homotopically and topologically the concept of \textit{loop motion planning algorithm (LMPA)}  and define the \textit{loop topological complexity} which is a generalization of the work of Farber and Grant.
+    
+    Mamouni and Derfoufi uses the F\'elix-Thomas generaization of the Chas-Sullivan \textit{String topology} into rational homotopy to make generalization of \textit{string topology} into a broad topological robotics settings.
 
     \section{Some Basic definitions}
     In this section we introduced the basic definitions to be used the next sections and chapters of this project work.
@@ -80,7 +85,60 @@
 
         That is, for $(X, \tau_1),(Y, \tau_2,), f$ is continuous if $f^{-1} (G) \subset \tau_1$ whenever $G \in \tau_2$ or the inverse image of an open set is open under a continuous function.
     \end{defn}
+
+    \begin{defn} 
+        Let $X$ be a topological space.
+        \begin{enumerate}
+            \item A class $\{G_i\}$ of open subsets of $X$ is said to be an open cover of $X$ if each point of $X$ belongs to at least one $G_i$. That is, $\{G_i\}$, a collection of open sets is a cover for $X$, if $X = \cup_{i \in I} G_i$.
+            \item A subclass of an open cover of $X$ which itself is an open cove is called a \textit{subcover}.
+            \item An open cover (or subcover) is \textit{finite} if it contains finitely many elements. 
+        \end{enumerate}
+    \end{defn}
+
+    \begin{defn}[Compact space]
+        A compact space is a topological space $X$ in which every open cover $\{G_i\}_{i \in I}$ of $X$ has a finite subcover. That is, there exists $G_1, \ldots, G_n \in \{G_i\}_{i \in I}$ so that $X  = G_1 \cup \ldots \cup G_n$ 
+    \end{defn}
+
+    \begin{defn}[Regular space]
+        A topological space $X$ is said to be regular if it has the property that if $x \in X$ and $F$ any closed subspace of $X$ such that $x \notin F$, there exists disjoint open sets $U,V$ such that $F \subset U$ and $x \in V$. That is, it is always possible to separate $x$ and $F$ with disjoint open sets, when $x \notin F$.
+    \end{defn}
+
+    \begin{defn}
+        Let $X$ be atopological space 
+        \begin{enumerate}
+            \item A separation of $X$ is a pair $U,V$ of open subsets of $X$ whose union is $X$.
+            \item $X$ is said to be connected if it cannot be represented as the union of two disjoints open sets. That is there doesnot exist a separation of $X$.
+        \end{enumerate}
+    \end{defn}
     
+    \begin{defn}[Path]
+        Given any points $x,y$ in a topological space $X$, a path in $X$ from $x$ to $y$ is a continuous function $\alpha : [0,1] \lra X$ with $\alpha(0) = x$ and $\alpha(1) = y$, since we can rescale it to $\beta(t) = \alpha((b-a)t + a)$ for $t \in [0,1]$
+    \end{defn}
+    \begin{defn}[Path-connectedness]
+        A path connected space is a topological space $X$ in which for any points $x,y \in X$ there exists a path in $X$ from $x$ to $y$.
+    \end{defn}
+    
+    \begin{defn}[Homotopy]
+	Let $X$ and $Y$ be two topological spaces, let $f,g : X \lra Y$ be maps and $I = [0,1]$. Then the \textit{homotopy} from $f$ to $g$ is the map $F: X \times I \lra Y$ such that $F(x,0) = f(x)$ and $F(x,1) = g(x)$ for all points $x \in X$.
+\end{defn}
+
+\begin{notn}
+	If $F$ is the homotopy from $f$ to $g$ we write $\disp f \htp{F} g.$
+\end{notn}
+
+\begin{defn}[Homotopy Type]
+	Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, or homotopic), if there exists maps $f: X \lra Y$ and $g : Y \lra X$ such that $g \circ f \simeq 1_X$ and $f \circ g \simeq 1_X$
+\end{defn}
+
+\subsection*{Examples of Homotopic spaces}
+\begin{enumerate}
+	\item All homeomorphic spaces are homotopic.
+	\item Any convex subset of a Euclidean space is homotopic to a point.
+\end{enumerate}
+
+\begin{defn}[Contractible space]
+	A space $X$ is called contractible if the identity map $1_X$ is homotopic to the constant map at some point of $X$.
+\end{defn}
     
     
     
