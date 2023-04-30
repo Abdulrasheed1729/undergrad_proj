@@ -3,6 +3,36 @@
 Even though the word \textit{Robot} was firstly used in the year 1921, the history of Robotics can be traced as far back to 420 B.C., which started with the invention of a wooden, steam-propelled bird by Arcytas of Tarentum called \textbf{the Flying Pigeon} which was able to fly on its own (Latombe 1991).
 As a robot is a machine which is capable of carrying out complex tasks automatically they are in different forms such as drones, humanoids, manipulator arm, etc.
 
+\subsection{Use Cases of Robotics}
+Robotics has a wide range of use cases in various industries and fields. Some of the most common use cases of robotics are:
+\begin{enumerate}
+    \item Manufacturing: Robotics is widely used in manufacturing industries for automation of production processes. Robots are used for tasks such as assembling, welding, painting, and quality inspection. The use of robotics in manufacturing has led to increased productivity, accuracy, and efficiency.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=.225]{industral-robos.jpg}
+        \caption{Robotic Surgery an important application of Robotics in Medicine} 
+    \end{figure}
+
+    \item Healthcare: Robotics has been used in healthcare for various purposes, such as surgery, rehabilitation, and medication management. Robotic surgery is now commonly used for procedures such as prostatectomies, hysterectomies, and cardiac surgeries. Robotic exoskeletons are also used for rehabilitation of patients with mobility issues.
+    
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=.5]{robotic-surgery-illustration}
+    \caption{Robotic Surgery an important application of Robotics in Medicine} 
+\end{figure}
+
+    \item Agriculture: Robotics has the potential to revolutionize the agriculture industry by automating tasks such as planting, harvesting, and crop monitoring. Drones are used for crop surveillance and mapping, while robotic tractors are used for planting and harvesting.
+
+    \item Education: Robotics is used in education to teach students about programming, electronics, and mechanics. Robotics kits are used in classrooms to teach students how to build and program robots.
+
+    \item Military and Defense: Robotics is used in the military and defense industries for tasks such as bomb disposal, surveillance, and reconnaissance. Unmanned aerial vehicles (UAVs), also known as drones, are used for reconnaissance and surveillance.
+
+    \item Space exploration: Robotics has played a critical role in space exploration, with robots being used to explore other planets and moons. NASA's Mars rovers, for example, have been instrumental in collecting data and conducting experiments on the red planet.
+
+    \item Entertainment: Robotics is also used in the entertainment industry, such as animatronics in theme parks and movie special effects.
+\end{enumerate}
+
 One of the major goals in Robotics is to develop autonomous robots capable perfoming and executing tedious tasks without further human intervention and it is of major practical interest in a wide variety of domains such as manufacturing, construction,space exploration, medical surgery, etc.
 \begin{figure}[H]
     \centering
@@ -17,6 +47,15 @@ This work focus on the topological study of robot motion planning algorithms usi
 \section{Literature Review}
 Motion planning is a fundamental problem in robotics. It is the problem of finding a safe and efficient path for a robot to move from one point to another in its environment. The environment may be cluttered with obstacles, and the robot may have limited mobility. Motion planning is a challenging problem, and there is no single algorithm that can solve all cases.
 
+The topology of robot motion planning is an important topic in robotics research, as it involves the study of the configuration space and its topology, which is crucial for path planning and obstacle avoidance. A literature review on this topic reveals that researchers have explored various approaches to tackle the challenges associated with robot motion planning, such as high dimensionality, non-convexity, and dynamic environments.
+
+One common approach is to use sampling-based methods, such as the Probabilistic Roadmap (PRM) and Rapidly-exploring Random Trees (RRT). These methods rely on sampling the configuration space to build a roadmap or tree structure that represents the connectivity of the space, allowing for efficient path planning. However, the topology of the configuration space can still pose challenges, particularly in the presence of narrow passages or high-dimensional spaces.
+
+To address these challenges, researchers have proposed various techniques that leverage the topology of the configuration space. For example, the Topological Roadmap (TRM) method constructs a graph that represents the topology of the configuration space by identifying critical points and their connectivity, allowing for efficient path planning even in high-dimensional spaces. Similarly, the Topological RRT (TRRT) method incorporates topology into the RRT algorithm by using a tree structure that preserves the topology of the configuration space.
+
+Another approach is to use algebraic topology, which involves the use of algebraic tools to study the topology of spaces. For example, researchers have used homology theory to study the connectivity of the configuration space and to identify topological features that can guide path planning. The Mapper algorithm, which is based on topological data analysis, has also been used to study the topology of the configuration space and to generate a graph that captures its topological structure.
+
+
 The study of Topological robot motion planning started in 2003-2004 by Michael Farber. His motivation was using tool from algebraic topology, whereby he considered a path connected topological space whose path space is equipped with the compact open topology. Using this the motion planning algorithm of any mechanical robot that moves in a configuration space is represented to be the funcion of input and output with the input being the two points (that is the current location of the robot and its destination) and the output is the path to be taken by the robot.
 
 In the earlier work of Farber he introduces an homotopy invariant called Topological complexity, which measures the minimum number of continuous motions required to move a robot from one configuration to another in a given configuration space. In this founding paper he was only concerned with the departing motion of the robot and not the returning motion, but made up for this in a subsequent work with M. Grant where the concept \textit{symmetric topological complexity} was introduced. This studies when the departing and returning motion of the robot are the same.
@@ -25,7 +64,10 @@ Using the motivation of Farber and Grant, Mamouni and Derfourfi considered the c
 
 Mamouni and Derfoufi uses the F\'elix-Thomas generaization of the Chas-Sullivan \textit{String topology} into rational homotopy to make generalization of \textit{string topology} into a broad topological robotics settings.
 
-\section{Some Basic definitions}
+
+\chapter{Basic Definitions and Theorems}
+
+\section{Topological Space}
 In this section we introduced the basic definitions to be used the next sections and chapters of this project work.
 
 \begin{defn}[Topological Space]
@@ -37,6 +79,16 @@ In this section we introduced the basic definitions to be used the next sections
     \end{itemize}
     $\tau$ is called the topology on $X$ and the ordered pair $(X, \tau)$ is called a topological space. When $\tau$ is out of context we use ordinary $X$.
 \end{defn}
+
+\begin{defn}[Closed set]
+    A subset $A$ of a topological space $X$ is said to be closed if the complement $X \backslash A$ is open.
+\end{defn}
+As an example consider the collection $\tau  = \{ X, \emptyset, \{1\}, \{3,4\},\{1,3,4\}, \{2,3,4,5\} \}$ which defines a topology on $X  = \{1,2,3,4,5\}$. The closed subsets of $X$ are:
+\[
+    \emptyset, X, \{2,3,4,5\}, \{1,2,5\}, \{2,5\},\{1\}  
+\]
+Note that each of the above subsets of $X$ are complement of open subsets of $X$, and it is worth noting that $\{2,3,4,5\}$ is both open and closed and $\{1,2\}$ is neither open nor close.\newline
+The type of set $\{2,3,4,5\}$ (i.e both open and closed) are called \textit{clopen} set.
 
 \begin{defn}[Subspace]
     Let $(X, \tau)$ be a topological space and\\
@@ -63,19 +115,74 @@ In this section we introduced the basic definitions to be used the next sections
     \end{enumerate}
 \end{defn}
 
+\section{Continuous Functions and Homeomorphism}
+
 \begin{defn}[Continuous functions]
     Let $X,Y$ be topological spaces and \\
     $\disp f: X \lra Y$ is a mapping, $f$ is said to be continuous if $\disp f^{-1}(G)$ is open in $X$ whenever $G$ is open in $Y$.
 
     That is, for $(X, \tau_1),(Y, \tau_2,), f$ is continuous if $f^{-1} (G) \subset \tau_1$ whenever $G \in \tau_2$ or the inverse image of an open set is open under a continuous function.
 \end{defn}
+The following theorem shows the definition of continuous functions interms of closed sets.
+
+\begin{thm}
+    Let $X$ and $Y$ be two topological spaces. A function $f : X \lra Y$ is continuous if and only if the inverse image of every closed subset of $Y$ is a closed subset of $X$.
+\end{thm}
+
+\begin{proof}
+    Suppose $f : X \lra Y$ is continuous and let $F$ be a closed subset of $Y$. Then $F^c$ is open and so $f^{-1}(F^c)$ is open in $X$. But $f^{-1}(F^c) = (f^{-1} F)^c$, therefore $f^{-1}(F)$ is closed.
+
+    Conversely, assume $F$ is closed in $Y$ implies $f^{-1}(F)$ is closed in $X$. Let $G$ be an open subset of $Y$. Then $G^c$ is closed in $Y$ and so $f^{-1}(G^c) = (f^{-1}G)^c$ is closed in $X$. Accordingly, $f^{-1}(G)$ is open therefore $f$ is continuous.
+\end{proof}
+
+In every branches of mathematics, it is important to give the definition of when two basic objects are equivalent, for example, like we have \textit{isomorphism} in graph and group theory. In the world of topological spaces, a topological space $X$, say is said to be topologicallyequivalent to another space $Y$, if $X$ can be deformed into $Y$ without tearing, formally this concept is called \textit{homeomorphism} as we will see in the forth coming definitions.
+
+\begin{defn}[Open-mapping]
+    Let $X,Y$ be topological spaces. The mapping $f: X \lra Y$ is called an \textit{open mapping} if it maps open sets in $X$ into open sets in $Y$. This implies:
+    \begin{enumerate}
+        \item $f: X \lra Y$ where $f$ is an open mapping then $f(X)$ is an open set in $Y$.
+        \item $f^{-1}: Y \lra X$ is continuous. 
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}[Homeomorphism]
+    A homeomorphism is a one-to-one continuous mapping of $(X, \tau_1)$ onto another $(Y, \tau_2)$ whose inverse is also continuous.\newline
+    Equivalently,an homeomorphism between two topological spaces is a continuous bijective open mapping between the two spaces.
+\end{defn}
+The spaces $X$ and $Y$ are \textit{homeomorphic} (or topologically equivalent) if there exists a homeomorphism from $X$ to $Y$, and it is written $X \cong Y$.
+
+\subsection{Examples of Homeomorphism and Homeomorphic Spaces}
+\begin{enumerate}
+    \item A very popular example of homeomorphism is the deformation of a coffee mug into a donut.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{coffee-mug-to-donut}
+        \caption{Deformation of a coffee mug to donut}
+    \end{figure}
+    \item The closed disk $\{(x,y) \in \RR^2 \mid x^2 + y^2 \le 1\}$ is homeomorphic to the closed square $[-1,1] \times [-1,1]$. Intuitively, the disk can be turned into the square by stretching.
+    \item In the same manner, the unit circle $S^1 = \{(x,y) \in \RR^2 \mid x^2 + y^2 = 1\}$ and a square $T = \{(x,y) \in \RR^2 \mid |x| + |y| = 1\}$ are the same. Since there is function $f : S^1 \lra T$ defined by
+    \[
+        f(x,y) = \left(\frac{x}{|x| + |y|}, \frac{y}{|x| + |y|}\right)  
+    \]
+    which is continuous, open and bijective.
+    \item Let $a,b \in \RR$ with $a < b$. Define $f: [0,1] \lra [a,b]$ by 
+    \[
+        f(t) = (1-t)a + tb 
+    \]
+    $t \in [0,1]$. Then $f$ is continuous, one-to-one and onto. Its inverse is given by 
+    \[
+        f^{-1} (u) = \frac{u-a}{b-a}  
+    \]
+    $u \in [a,b]$, which is also continuous. Hence $f$ is a homeomorphism and the spaces $[0,1]$ and $[a,b]$ are homeomorphic.
+
+\end{enumerate}
 
 \begin{defn} 
     Let $X$ be a topological space.
     \begin{enumerate}
         \item A class $\{G_i\}$ of open subsets of $X$ is said to be an open cover of $X$ if each point of $X$ belongs to at least one $G_i$. That is, $\{G_i\}$, a collection of open sets is a cover for $X$, if $X = \cup_{i \in I} G_i$.
         \item A subclass of an open cover of $X$ which itself is an open cove is called a \textit{subcover}.
-        \item An open cover (or subcover) is \textit{finite} if it contains finitely many elements. 
+        \item An open cover (or subcover) is \textit{finite} if it contains finitely many elements.
     \end{enumerate}
 \end{defn}
 
@@ -117,6 +224,11 @@ Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, 
 \subsection*{Examples of Homotopic spaces}
 \begin{enumerate}
 \item All homeomorphic spaces are homotopic.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{mug-and-donut-homotopy-equivalence}
+    \caption{Deformation of a coffee mug to donut showing the equivalence of both subspace of $\RR^3$}
+\end{figure}
 \item Any convex subset of a Euclidean space is homotopic to a point.
 \end{enumerate}
 
