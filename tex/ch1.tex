@@ -56,7 +56,7 @@ To address these challenges, researchers have proposed various techniques that l
 Another approach is to use algebraic topology, which involves the use of algebraic tools to study the topology of spaces. For example, researchers have used homology theory to study the connectivity of the configuration space and to identify topological features that can guide path planning. The Mapper algorithm, which is based on topological data analysis, has also been used to study the topology of the configuration space and to generate a graph that captures its topological structure.
 
 
-The study of Topological robot motion planning started in 2003-2004 by Michael Farber. His motivation was using tool from algebraic topology, whereby he considered a path connected topological space whose path space is equipped with the compact open topology. Using this the motion planning algorithm of any mechanical robot that moves in a configuration space is represented to be the funcion of input and output with the input being the two points (that is the current location of the robot and its destination) and the output is the path to be taken by the robot.
+The topological approach to robot motion planning started in 2003-2004 by Michael Farber. His motivation was using tool from algebraic topology, whereby he considered a path connected topological space whose path space is equipped with the compact open topology. Using this the motion planning algorithm of any mechanical robot that moves in a configuration space is represented to be the funcion of input and output with the input being the two points (that is the current location of the robot and its destination) and the output is the path to be taken by the robot.
 
 In the earlier work of Farber he introduces an homotopy invariant called Topological complexity, which measures the minimum number of continuous motions required to move a robot from one configuration to another in a given configuration space. In this founding paper he was only concerned with the departing motion of the robot and not the returning motion, but made up for this in a subsequent work with M. Grant where the concept \textit{symmetric topological complexity} was introduced. This studies when the departing and returning motion of the robot are the same.
 
@@ -209,6 +209,8 @@ The spaces $X$ and $Y$ are \textit{homeomorphic} (or topologically equivalent) i
     A path connected space is a topological space $X$ in which for any points $x,y \in X$ there exists a path in $X$ from $x$ to $y$.
 \end{defn}
 
+It is very tempting to assume that 
+
 \begin{defn}[Homotopy]
 Let $X$ and $Y$ be two topological spaces, let $f,g : X \lra Y$ be maps and $I = [0,1]$. Then the \textit{homotopy} from $f$ to $g$ is the map $F: X \times I \lra Y$ such that $F(x,0) = f(x)$ and $F(x,1) = g(x)$ for all points $x \in X$.
 \end{defn}
@@ -235,3 +237,7 @@ Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, 
 \begin{defn}[Contractible space]
 A space $X$ is called contractible if the identity map $1_X$ is homotopic to the constant map at some point of $X$.
 \end{defn}
+
+
+\chapter{Topological Complexity of Motion Planning Algorithms}
+
