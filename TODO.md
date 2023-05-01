@@ -1,11 +1,17 @@
 ## TODOS 🗒
-- [ ] Write Chapter one, which is the introduction part of the project work.
-- Discuss about the concept of Topological Robotics.
-- How important is Topology in Robotics
-- Some basic definitions and terms in T.R
+- [X] Write Chapter one, which is the introduction part of the project work.
+- [ ] Discuss about the concept of Topological Robotics.
+- [X] How important is Topology in Robotics
+- [X] Some basic definitions and terms in T.R
 
-- [ ] Discuss the usecases of robotics in different real life applications.
+- [X] Discuss the usecases of robotics in different real life applications.
 
 - [ ] Write the Chapter Two
-- Brief history of Robotics and Topological Robotics.
-- Literature Review 📖
+- [X] Brief history of Robotics and Topological Robotics.
+- [X] Literature Review 📖
+- [ ] Discuss the Topological complexity of motion planning algorithms
+- [ ] Farber's Version
+- [ ] Mamouni and Derfoufi's version
+- [ ] Iwase-Sakai's version
+- [ ] Study the complexity of an existing algorithm
+- [ ] Then show results about its topological complexty.
