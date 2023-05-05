@@ -29,6 +29,8 @@ Robotics has a wide range of use cases in various industries and fields. Some of
     \item Military and Defense: Robotics is used in the military and defense industries for tasks such as bomb disposal, surveillance, and reconnaissance. Unmanned aerial vehicles (UAVs), also known as drones, are used for reconnaissance and surveillance.
 
     \item Space exploration: Robotics has played a critical role in space exploration, with robots being used to explore other planets and moons. NASA's Mars rovers, for example, have been instrumental in collecting data and conducting experiments on the red planet.
+    
+    
 
     \item Entertainment: Robotics is also used in the entertainment industry, such as animatronics in theme parks and movie special effects.
 \end{enumerate}
@@ -53,8 +55,7 @@ One common approach is to use sampling-based methods, such as the Probabilistic 
 
 To address these challenges, researchers have proposed various techniques that leverage the topology of the configuration space. For example, the Topological Roadmap (TRM) method constructs a graph that represents the topology of the configuration space by identifying critical points and their connectivity, allowing for efficient path planning even in high-dimensional spaces. Similarly, the Topological RRT (TRRT) method incorporates topology into the RRT algorithm by using a tree structure that preserves the topology of the configuration space.
 
-Algebraic approach to the problem of motion planning was introduced in 1983 by Schwartz and Sharir ~\cite{schwartz:1983a}
-
+Algebraic approach to the problem of motion planning was introduced in 1983 by Schwartz and Sharir ~\cite{schwartz:1983a} where they present an algorithm for solving the two-diensional case of the problem, using the \textit{Piano movers problem} as a motivation. In 1988, John Canny studies the complexity of motion planning algorithms which is the study of the time taken for a given algorithm to move a robot from one configuration to another.
 
 The topological approach to robot motion planning started in 2003-2004 by Michael Farber. His motivation was using tool from algebraic topology, whereby he considered a path connected topological space whose path space is equipped with the compact open topology. Using this the motion planning algorithm of any mechanical robot that moves in a configuration space is represented to be the funcion of input and output with the input being the two points (that is the current location of the robot and its destination) and the output is the path to be taken by the robot.
 
@@ -238,6 +239,12 @@ Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, 
 A space $X$ is called contractible if the identity map $1_X$ is homotopic to the constant map at some point of $X$.
 \end{defn}
 
+\begin{defn}[Manifold]
+    hh
+\end{defn}
+
+\section{Configuration Space}
+There is no way we can discuss the application of topology to robotics without discussing the configuration space, since that is the entry point of topology into the field of robotics.
 
 \chapter{Topological Complexity of Motion Planning Algorithms}
 

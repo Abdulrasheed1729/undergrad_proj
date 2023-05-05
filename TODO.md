@@ -10,6 +10,8 @@
 - [X] Brief history of Robotics and Topological Robotics.
 - [X] Literature Review 📖
 - [ ] Discuss the Topological complexity of motion planning algorithms
+
+- [ ] Chapter three
 - [ ] Farber's Version
 - [ ] Mamouni and Derfoufi's version
 - [ ] Iwase-Sakai's version
