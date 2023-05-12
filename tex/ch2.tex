@@ -1,0 +1,232 @@
+\chapter{Basic Definitions and Theorems}
+
+\section{Topological Space}
+In this section we introduced the basic definitions to be used the next sections and chapters of this project work.
+
+\begin{defn}[Topological Space]
+    Let $X$ be a nonempty set and $\tau$ be the collection of open subsets of $X$ satisfying the following conditions
+    \begin{itemize}
+        \item[1.] $\emptyset, X \in \tau$
+        \item[2.] the union of every class of set in $\tau$ is a set in $\tau$
+        \item[3.] the intersection of every finite class of sets in $\tau$ is a set in $\tau$
+    \end{itemize}
+    $\tau$ is called the topology on $X$ and the ordered pair $(X, \tau)$ is called a topological space. When $\tau$ is out of context we use ordinary $X$.
+\end{defn}
+
+\begin{defn}[Closed set]
+    A subset $A$ of a topological space $X$ is said to be closed if the complement $X \backslash A$ is open.
+\end{defn}
+As an example consider the collection $\tau  = \{ X, \emptyset, \{1\}, \{3,4\},\{1,3,4\}, \{2,3,4,5\} \}$ which defines a topology on $X  = \{1,2,3,4,5\}$. The closed subsets of $X$ are:
+\[
+    \emptyset, X, \{2,3,4,5\}, \{1,2,5\}, \{2,5\},\{1\}  
+\]
+Note that each of the above subsets of $X$ are complement of open subsets of $X$, and it is worth noting that $\{2,3,4,5\}$ is both open and closed and $\{1,2\}$ is neither open nor close.\newline
+The type of set $\{2,3,4,5\}$ (i.e both open and closed) are called \textit{clopen} set.
+
+\begin{defn}[Subspace]
+    Let $(X, \tau)$ be a topological space and\\
+     $Y \subset X$ be nonempty.\\
+    The relative topology or subspace topology on $Y, \tau_Y$ is defined as the class of all intersections with $Y$ of open sets of $Y$
+    \[
+        \tau_Y = \{Y \cap U  \mid U \in \tau\}
+    \]
+    The pair $(Y, \tau_Y)$ is called a topological subspace of $(X, \tau)$.
+\end{defn}
+
+\subsubsection*{Some examples of topological spaces}
+\begin{enumerate}
+    \item Let $X = \{x,y,z\}$ and $\tau = \{X, \emptyset, \{x\}, \{x,y\}, \{x,z\}\}$. Then $(X, \tau)$ is a topological space.
+    \item For any nonempty set $X$, let $\tau$ be the class of all  subsets of $X$. Then $(X, \tau)$ is a topological space.
+\end{enumerate}
+
+\begin{defn}
+    Let $X$ be a topological space and $x \in X$ 
+    \begin{enumerate}
+        \item An open neighbourhood of $x$ is an open subset of containing $x$.
+        \item A neighbourhood of $x, N(x)$ is a subset of $X$ containing an open neighbourhood. i.e. N (x) is a neighbourhood of x if there exists an open set Q such that $x \in Q \subset N (x)$.
+        \item The class of all neighbourhoods of $x \in X$ denoted by $N_x$ is called the neighbourhood system of x.
+    \end{enumerate}
+\end{defn}
+
+\section{Continuous Functions and Homeomorphism}
+
+\begin{defn}[Continuous functions]
+    Let $X,Y$ be topological spaces and \\
+    $\disp f: X \lra Y$ is a mapping, $f$ is said to be continuous if $\disp f^{-1}(G)$ is open in $X$ whenever $G$ is open in $Y$.
+
+    That is, for $(X, \tau_1),(Y, \tau_2,), f$ is continuous if $f^{-1} (G) \subset \tau_1$ whenever $G \in \tau_2$ or the inverse image of an open set is open under a continuous function.
+\end{defn}
+The following theorem shows the definition of continuous functions interms of closed sets.
+
+\begin{thm}
+    Let $X$ and $Y$ be two topological spaces. A function $f : X \lra Y$ is continuous if and only if the inverse image of every closed subset of $Y$ is a closed subset of $X$.
+\end{thm}
+
+\begin{proof}
+    Suppose $f : X \lra Y$ is continuous and let $F$ be a closed subset of $Y$. Then $F^c$ is open and so $f^{-1}(F^c)$ is open in $X$. But $f^{-1}(F^c) = (f^{-1} F)^c$, therefore $f^{-1}(F)$ is closed.
+
+    Conversely, assume $F$ is closed in $Y$ implies $f^{-1}(F)$ is closed in $X$. Let $G$ be an open subset of $Y$. Then $G^c$ is closed in $Y$ and so $f^{-1}(G^c) = (f^{-1}G)^c$ is closed in $X$. Accordingly, $f^{-1}(G)$ is open therefore $f$ is continuous.
+\end{proof}
+
+In every branches of mathematics, it is important to give the definition of when two basic objects are equivalent, for example, like we have \textit{isomorphism} in graph and group theory. In the world of topological spaces, a topological space $X$, say is said to be topologicallyequivalent to another space $Y$, if $X$ can be deformed into $Y$ without tearing, formally this concept is called \textit{homeomorphism} as we will see in the forth coming definitions.
+
+\begin{defn}[Open-mapping]
+    Let $X,Y$ be topological spaces. The mapping $f: X \lra Y$ is called an \textit{open mapping} if it maps open sets in $X$ into open sets in $Y$. This implies:
+    \begin{enumerate}
+        \item $f: X \lra Y$ where $f$ is an open mapping then $f(X)$ is an open set in $Y$.
+        \item $f^{-1}: Y \lra X$ is continuous. 
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}[Homeomorphism]
+    A homeomorphism is a one-to-one continuous mapping of $(X, \tau_1)$ onto another $(Y, \tau_2)$ whose inverse is also continuous.\newline
+    Equivalently,an homeomorphism between two topological spaces is a continuous bijective open mapping between the two spaces.
+\end{defn}
+The spaces $X$ and $Y$ are \textit{homeomorphic} (or topologically equivalent) if there exists a homeomorphism from $X$ to $Y$, and it is written $X \cong Y$.
+
+\subsection{Examples of Homeomorphism and Homeomorphic Spaces}
+\begin{enumerate}
+    \item A very popular example of homeomorphism is the deformation of a coffee mug into a donut.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{coffee-mug-to-donut}
+        \caption{Deformation of a coffee mug to donut}
+    \end{figure}
+    \item The closed disk $\{(x,y) \in \RR^2 \mid x^2 + y^2 \le 1\}$ is homeomorphic to the closed square $[-1,1] \times [-1,1]$. Intuitively, the disk can be turned into the square by stretching.
+    \item In the same manner, the unit circle $S^1 = \{(x,y) \in \RR^2 \mid x^2 + y^2 = 1\}$ and a square $T = \{(x,y) \in \RR^2 \mid |x| + |y| = 1\}$ are the same. Since there is function $f : S^1 \lra T$ defined by
+    \[
+        f(x,y) = \left(\frac{x}{|x| + |y|}, \frac{y}{|x| + |y|}\right)  
+    \]
+    which is continuous, open and bijective.
+    \item Let $a,b \in \RR$ with $a < b$. Define $f: [0,1] \lra [a,b]$ by 
+    \[
+        f(t) = (1-t)a + tb 
+    \]
+    $t \in [0,1]$. Then $f$ is continuous, one-to-one and onto. Its inverse is given by 
+    \[
+        f^{-1} (u) = \frac{u-a}{b-a}  
+    \]
+    $u \in [a,b]$, which is also continuous. Hence $f$ is a homeomorphism and the spaces $[0,1]$ and $[a,b]$ are homeomorphic.
+
+\end{enumerate}
+
+\begin{defn} 
+    Let $X$ be a topological space.
+    \begin{enumerate}
+        \item A class $\{G_i\}$ of open subsets of $X$ is said to be an open cover of $X$ if each point of $X$ belongs to at least one $G_i$. That is, $\{G_i\}$, a collection of open sets is a cover for $X$, if $X = \cup_{i \in I} G_i$.
+        \item A subclass of an open cover of $X$ which itself is an open cove is called a \textit{subcover}.
+        \item An open cover (or subcover) is \textit{finite} if it contains finitely many elements.
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}[Compact space]
+    A compact space is a topological space $X$ in which every open cover $\{G_i\}_{i \in I}$ of $X$ has a finite subcover. That is, there exists $G_1, \ldots, G_n \in \{G_i\}_{i \in I}$ so that $X  = G_1 \cup \ldots \cup G_n$ 
+\end{defn}
+
+\begin{defn}
+    A topological space $X$ is called a $T_0$ space if given any pair of distinct points $x \neq y$ in $X$, there is a neighborhood $U \subset X$ satisfying $x \in U$ and $y \notin U$ or there is a neighbourhood $U \subset X$ satisfying $x \notin U$ and $y \in U$.
+
+    That is, given any pair of distinct points in $X$, there exists a neighbourhood containing one of the points but not the other. This property is called the \textit{zeroth separation axiom.} 
+\end{defn}
+
+\begin{defn}
+    h
+\end{defn}
+
+\begin{defn}[Regular space]
+    A topological space $X$ is said to be regular if it has the property that if $x \in X$ and $F$ any closed subspace of $X$ such that $x \notin F$, there exists disjoint open sets $U,V$ such that $F \subset U$ and $x \in V$. That is, it is always possible to separate $x$ and $F$ with disjoint open sets, when $x \notin F$.
+\end{defn}
+
+\begin{defn}
+    Let $X$ be a topological space 
+    \begin{enumerate}
+        \item A separation of $X$ is a pair $U,V$ of open subsets of $X$ whose union is $X$.
+        \item $X$ is said to be connected if it cannot be represented as the union of two disjoints open sets. That is there doesnot exist a separation of $X$.
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}[Path]
+    Given any points $x,y$ in a topological space $X$, a path in $X$ from $x$ to $y$ is a continuous function $\alpha : [0,1] \lra X$ with $\alpha(0) = x$ and $\alpha(1) = y$, since we can rescale it to $\beta(t) = \alpha((b-a)t + a)$ for $t \in [0,1]$
+\end{defn}
+\begin{defn}[Path-connectedness]
+    A path connected space is a topological space $X$ in which for any points $x,y \in X$ there exists a path in $X$ from $x$ to $y$.
+\end{defn}
+
+It is very tempting to assume that 
+
+\begin{defn}[Homotopy]
+Let $X$ and $Y$ be two topological spaces, let $f,g : X \lra Y$ be maps and $I = [0,1]$. Then the \textit{homotopy} from $f$ to $g$ is the map $F: X \times I \lra Y$ such that $F(x,0) = f(x)$ and $F(x,1) = g(x)$ for all points $x \in X$.
+\end{defn}
+
+\begin{notn}
+If $F$ is the homotopy from $f$ to $g$ we write $\disp f \htp{F} g.$
+\end{notn}
+
+\begin{defn}[Homotopy Type]
+Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, or homotopic), if there exists maps $f: X \lra Y$ and $g : Y \lra X$ such that $g \circ f \simeq 1_X$ and $f \circ g \simeq 1_X$
+\end{defn}
+
+\subsection*{Examples of Homotopic spaces}
+\begin{enumerate}
+\item All homeomorphic spaces are homotopic.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{mug-and-donut-homotopy-equivalence}
+    \caption{Deformation of a coffee mug to donut showing the equivalence of both subspace of $\RR^3$}
+\end{figure}
+\item Any convex subset of a Euclidean space is homotopic to a point.
+\end{enumerate}
+
+\begin{defn}[Contractible space]
+A space $X$ is called contractible if the identity map $1_X$ is homotopic to the constant map at some point of $X$.
+\end{defn}
+
+\section{Manifolds}
+Before we give the definition of what a configuration space is we give some exposition of manifolds.
+\begin{defn}[Manifold]
+    A topological space $M \subseteq \RR^m$ is a \textit{manifold} if for every $x \in M$, there exists an open set $O \subset M$ such that 
+    \begin{enumerate}
+        \item $x \in O$
+        \item $O$ is homeomorphic to $\RR^n$
+        \item $n$ is fixed for all $x \in M$
+    \end{enumerate}
+    The fixed $n$ is called the dimension of the manifold.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=.95]{manifold}
+    \end{figure}
+\end{defn}
+
+From the above definition, it is obvious that $m \ge n$ and it is impossible for a manifold to include its boundary points since they are not contained in open sets.
+\linebreak
+A manifold with boundary can be defined requiring that the neighborhood of each boundary point of $M$ is homeomorphic to a half-space of dimension $n$ and the interior points must be homeomorphic to $\RR^n$.
+
+Now, we give presentation on the construction of some basic manifolds that frequently appear in motion planning.
+
+\subsection{Examples of manifolds}
+
+\begin{enumerate}
+    \item \textbf{$1D$ manifolds}: A very obvious example of a one dimensional manifold is $\RR$, since by homeomorphism $\RR$ looks like $\RR$ in the vicinity of every point. The range can be restricted to the unit interval to yield the manifold $(0,1)$ since they are homeomorphic.
+
+    Another example of a $1D$ manifold is a circle, say $\Sb^1$, where
+    \[
+        \Sb^1 = \{(x,y) \in \RR^2 \mid x^2 + y^2  = 1\}
+    \]
+    \item \textbf{$2D$ manifolds}: Many important $2D$ manifolds can be formed by applying cartesian product to $1D$ manifolds. 
+    \begin{itemize}
+        \item The $2D$ manifold $\RR^2$ is formed by $\RR \times \RR$ 
+        \item The product $\RR \times \Sb^1$ defines a manifold that is equivalent to an infinite cylinder
+        \item Also, $\Sb^1 \times \Sb^1$ is a manifold that is equivalent to a torus.
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=.85]{2d-manifolds}
+        \caption{Some 2D manifolds that can be obtained by identifying pairs of points along the boundary of a square region}
+    \end{figure}
+    \item 
+\end{enumerate}
+
+
+
+\section{Configuration Space}
+There is no way we can discuss the application of topology to robotics without discussing the configuration space, since that is the entry point of topology into the field of robotics.
