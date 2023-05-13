@@ -130,12 +130,26 @@ The spaces $X$ and $Y$ are \textit{homeomorphic} (or topologically equivalent) i
 \end{defn}
 
 \begin{defn}
-    h
+    A topological space $X$ is a $T_1$ space or satisfies the \textit{first separation axiom} if given an pair of distinct points, each has a neighbourhood which doesnot contain the othher. That is, for all $x,y \in X. \, x \neq y$ there exist neighbourhoods $U_x, U_y$ suchh that $x \in U_x, \, y \notin U_x$ and $y \in U_y, \, x \notin U_y$.
+
+    A $T_1$ space is sometimes called \textit{Fr\'echet space} 
+\end{defn}
+
+\begin{defn}[Hausdorff Space]
+    An Hausdorf space or $T_2$ space is a topological space in which each pair of distinct points can be separated by open sets in the sense that the points have disjoint neighbourhoods.
 \end{defn}
 
 \begin{defn}[Regular space]
     A topological space $X$ is said to be regular if it has the property that if $x \in X$ and $F$ any closed subspace of $X$ such that $x \notin F$, there exists disjoint open sets $U,V$ such that $F \subset U$ and $x \in V$. That is, it is always possible to separate $x$ and $F$ with disjoint open sets, when $x \notin F$.
 \end{defn}
+
+\begin{prop}
+    Every subspace of a regular space is regular.
+\end{prop}
+
+\begin{proof}
+    Let $(X, \tau)$ be a regular space and $(Y, \tau_Y)$ be its subspace. Let $x$ be a poit in $Y$ and $F$ a $\tau_Y$ closed subset of $Y$ not containing $x$. Then there is a closed subset $G$ of $X$ such that $F  = G \cap Y$. Since $x \notin G$ and $X$ is regular there are disjoint $\tau$-open sets $U, V$ such that $x \in U$ and $F \subseteq V$. Then $Y \cap U$ and $Y \cap V$ are disjoint $\tau_Y$ open sets with $x \in Y \cap U$ and $F \subseteq Y \cap V$. Thus, $(Y, \tau_Y)$ is regular.
+\end{proof}
 
 \begin{defn}
     Let $X$ be a topological space 
@@ -152,8 +166,6 @@ The spaces $X$ and $Y$ are \textit{homeomorphic} (or topologically equivalent) i
     A path connected space is a topological space $X$ in which for any points $x,y \in X$ there exists a path in $X$ from $x$ to $y$.
 \end{defn}
 
-It is very tempting to assume that 
-
 \begin{defn}[Homotopy]
 Let $X$ and $Y$ be two topological spaces, let $f,g : X \lra Y$ be maps and $I = [0,1]$. Then the \textit{homotopy} from $f$ to $g$ is the map $F: X \times I \lra Y$ such that $F(x,0) = f(x)$ and $F(x,1) = g(x)$ for all points $x \in X$.
 \end{defn}
@@ -162,9 +174,52 @@ Let $X$ and $Y$ be two topological spaces, let $f,g : X \lra Y$ be maps and $I =
 If $F$ is the homotopy from $f$ to $g$ we write $\disp f \htp{F} g.$
 \end{notn}
 
+If in addition, $f$ and $g$ agree on some subset $A$ of $X$, we may wish to deform $f$ to $g$ without altering the values of $f$ on $A$. IN this particular case, we define an homotopy $F$ from $f$ to $g$ with the additional property that 
+\[
+    F(a,t) = f(a) \quad \text{for all $a \in A$, and all $t \in I = [0,1]$}  
+\]
+when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
+
+\begin{notn}
+    If $F$ is the homotopy from $f$ to $g$ relative to $A$ we write $\disp f \htp{F} g \rel A.$
+\end{notn}
+
+\begin{lem}
+    The relation of homotopy is an equivalence relation on the set of all maps from $X$ to $Y$.
+\end{lem}
+\begin{proof}
+    Let $f,g,h$ be maps from $X$ to $Y$. For any $f$ we have $f \htp{F} f$ where $F(x,t) = f(x)$, so the relation is reflexive. Also if $f \htp{F} g$ then $g \htp{G} f$ where $G(x,t) = F(x, 1-t)$, giving the symmetric property of the relation.
+    \\
+    Finally, if $f \htp{F} g$ and $g \htp{G} h$, then $f \htp{H} h$ where $H$ is defined by
+    \begin{equation*}
+        H(x,t) = \begin{cases}
+            F(x, 2t) & 0 \le t \le \frac12 \\
+            G(x, 2t - 1) & \frac12 \le t \le 1
+        \end{cases}
+    \end{equation*}
+    so the relation is transitive.
+\end{proof}
+
+
+%%%TODO State and proof the result on the behaviour of homotopy with respect to composition of maps
+
 \begin{defn}[Homotopy Type]
 Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, or homotopic), if there exists maps $f: X \lra Y$ and $g : Y \lra X$ such that $g \circ f \simeq 1_X$ and $f \circ g \simeq 1_X$
 \end{defn}
+
+\begin{figure}
+    \begin{center}
+        \begin{asy}
+            draw((0,0) .. (0.025,0.025) .. (0.5,0), Arrow);
+            draw((0.5,-0.0125) .. (0.025,-0.0375) .. (0,-0.0125), Arrow);
+            label("$X$", (0,0),W);
+            label("$Y$", (0.5,0), E);
+            label("$f$", (0.025,-0.0375));
+            label("$g$", (0.025,0.025));
+        \end{asy}
+     \end{center}
+\end{figure}
+
 
 \subsection*{Examples of Homotopic spaces}
 \begin{enumerate}
@@ -176,6 +231,9 @@ Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, 
 \end{figure}
 \item Any convex subset of a Euclidean space is homotopic to a point.
 \end{enumerate}
+
+
+%%%TODO show that homotopy type is an equavalence relation.
 
 \begin{defn}[Contractible space]
 A space $X$ is called contractible if the identity map $1_X$ is homotopic to the constant map at some point of $X$.
@@ -227,6 +285,12 @@ Now, we give presentation on the construction of some basic manifolds that frequ
 \end{enumerate}
 
 
+\section{Fundamental Group}
+\begin{defn}[Loop]
+    Let $X$ be a topological space and $\gamma : X \lra [0,1]$ be a continuous path in $X$. We call $\gamma$ a \textit{loop} if $\gamma(0) = \gamma(1)$.
+\end{defn}
+
+Now, let $\alpha$ be a loop and let some $x_b$ be designated as a base point. For some arbitrary but fixed basse point, $x_b$, consider the set of all loops such that $\alpha(0) = \alpha(1) = x_b$. This can 
 
 \section{Configuration Space}
 There is no way we can discuss the application of topology to robotics without discussing the configuration space, since that is the entry point of topology into the field of robotics.

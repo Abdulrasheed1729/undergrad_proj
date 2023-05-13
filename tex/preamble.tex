@@ -10,12 +10,28 @@
 \usepackage{apalike}
 \usepackage{hyperref}
 
-\graphicspath{ {../images} }
+\usepackage{patch-asy}
+\numberwithin{asy}{chapter}
+\renewcommand{\theasy}{\thechapter\Alph{asy}}
+\begin{asydef}
+	// import extras;
+	size(6cm);
+	usepackage("amsmath");
+	usepackage("amssymb");
+	defaultpen(fontsize(11pt));
+	settings.tex="latex";
+	settings.outformat="pdf";
+\end{asydef}
+\def\asydir{asy}
+
+\graphicspath{ {./images} }
 
 %%%%%% ---- Theorem Styles and environments ----------------------
 \theoremstyle{definition}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{defn}{Definition}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lem}{Lemma}[section]
 \newtheorem*{notn}{Notation}
 
 
@@ -29,6 +45,12 @@
 \newcommand{\RR}{\mathbb{R}} %% Set of real numbers
 \newcommand{\Sb}{\mathbb{S}}
 \newcommand{\htp}[1]{\underset{#1}{\simeq}} %%% Homotopy of two functions in
+
+
+%%%%% --------- Custom operators -------------------------------
+
+\DeclareMathOperator{\rel}{rel}
+
 
 
 \title{Topology of Motion Planning Algorithms}
