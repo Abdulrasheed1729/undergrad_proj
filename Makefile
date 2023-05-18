@@ -1,5 +1,5 @@
 run:
-	latexmk main.tex -pvc -f
+	latexmk main.tex -bibtex -pvc -f
 clear:
 	latexmk main.tex -CA
 bib-gen:

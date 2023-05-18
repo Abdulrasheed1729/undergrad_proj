@@ -9,7 +9,22 @@
 \usepackage{float}
 \usepackage{apalike}
 \usepackage{hyperref}
+\usepackage{url}
 
+%%%% ------ Links ------------
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={green!50!black},
+    urlcolor={blue!80!black}
+}
+
+%%%%%% ------ Tikz Stuffs -----------------------
+\usepackage{tikz}
+\usepackage{tikz-cd}
+
+
+%%%% ---------- Asymptote Stuffs ----------------
 \usepackage{patch-asy}
 \numberwithin{asy}{chapter}
 \renewcommand{\theasy}{\thechapter\Alph{asy}}
@@ -45,11 +60,13 @@
 \newcommand{\RR}{\mathbb{R}} %% Set of real numbers
 \newcommand{\Sb}{\mathbb{S}}
 \newcommand{\htp}[1]{\underset{#1}{\simeq}} %%% Homotopy of two functions in
-
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\TT}{\mathbb{T}}
 
 %%%%% --------- Custom operators -------------------------------
 
 \DeclareMathOperator{\rel}{rel}
+\DeclareMathOperator{\map}{map}
 
 
 

@@ -1,1 +1,0 @@
-\InputIfFileExists {asy/\jobname -2A.pre}{}{}

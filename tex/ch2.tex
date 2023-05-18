@@ -207,18 +207,14 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
 Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, or homotopic), if there exists maps $f: X \lra Y$ and $g : Y \lra X$ such that $g \circ f \simeq 1_X$ and $f \circ g \simeq 1_X$
 \end{defn}
 
-\begin{figure}
-    \begin{center}
-        \begin{asy}
-            draw((0,0) .. (0.025,0.025) .. (0.5,0), Arrow);
-            draw((0.5,-0.0125) .. (0.025,-0.0375) .. (0,-0.0125), Arrow);
-            label("$X$", (0,0),W);
-            label("$Y$", (0.5,0), E);
-            label("$f$", (0.025,-0.0375));
-            label("$g$", (0.025,0.025));
-        \end{asy}
-     \end{center}
-\end{figure}
+
+\begin{center}
+    \begin{tikzcd}
+        X \arrow[r, bend left=50]
+        \arrow[r, leftarrow,bend right=50]
+        & Y
+        \end{tikzcd}
+\end{center}
 
 
 \subsection*{Examples of Homotopic spaces}
@@ -241,7 +237,7 @@ A space $X$ is called contractible if the identity map $1_X$ is homotopic to the
 
 \section{Manifolds}
 Before we give the definition of what a configuration space is we give some exposition of manifolds.
-\begin{defn}[Manifold]
+\begin{defn}[Manifold\cite{lavalle2006planning}]
     A topological space $M \subseteq \RR^m$ is a \textit{manifold} if for every $x \in M$, there exists an open set $O \subset M$ such that 
     \begin{enumerate}
         \item $x \in O$
@@ -279,7 +275,7 @@ Now, we give presentation on the construction of some basic manifolds that frequ
     \begin{figure}[H]
         \centering
         \includegraphics[scale=.85]{2d-manifolds}
-        \caption{Some 2D manifolds that can be obtained by identifying pairs of points along the boundary of a square region}
+        \caption{Some 2D manifolds that can be obtained by identifying pairs of points along the boundary of a square region\cite{lavalle2006planning}}
     \end{figure}
     \item 
 \end{enumerate}
@@ -290,7 +286,69 @@ Now, we give presentation on the construction of some basic manifolds that frequ
     Let $X$ be a topological space and $\gamma : X \lra [0,1]$ be a continuous path in $X$. We call $\gamma$ a \textit{loop} if $\gamma(0) = \gamma(1)$.
 \end{defn}
 
-Now, let $\alpha$ be a loop and let some $x_b$ be designated as a base point. For some arbitrary but fixed basse point, $x_b$, consider the set of all loops such that $\alpha(0) = \alpha(1) = x_b$. This can 
+\begin{defn}[Loop]\cite{enwiki:fg}
+    Let $X$ be a topological space a loop at a based at $x_0$ is the continuous path $\disp \gamma : [0,1] \lra X$ such that the starting point $\gamma(0)$ and the end point $\gamma(1)$ are both equal to $x_0$
+\end{defn}
+
+Now, let $\alpha$ be a loop and let some $x_b$ be designated as a base point. For some arbitrary but fixed basse point, $x_b$, consider the set of all loops such that $\alpha(0) = \alpha(1) = x_b$. This can be made into a group by defining the following opeartion.
+
+Let $\tau_1 : [0,1] \ra X$ and $\tau_2 : [0,1] \ra X$ be two loop paths with the same base point. We define their product as $\tau = \tau_1 \cdot \tau_2$ and is defined as
+\begin{equation}\label{eqn:fgbo}
+    \tau(t) = (\tau_1 \cdot \tau_2)(t) = \begin{cases}
+        \tau_1(2t) & 0 \le t < \frac12 \\
+        \tau_2(2t - 1) & \frac12 \le t \le 1
+    \end{cases}  
+\end{equation}
+
+This results in a continuous loop path because $\tau_1$ terminates at $x_b$, and $\tau_2$ begins at $x_b$. That is the two paths are concatenated end to end.
+
+Suppose now that the equivalence relation induced by homotopy is applied to the set of all loop paths through a fixed point, $xb$ . It will no longer be important which particular path was chosen from a class; any representative may be used. The equivalence relation also applies when the set of loops is interpreted as a group. The group operation actually occurs over the set of equivalences of paths.
+
+The quotient set of the set of loops illustrated above and the equivalence class of homotopy form a group with respect to the binary operation $\cdot$ defined in (\ref{eqn:fgbo}) above and its construction is illustrated below. 
+
+The identity element is the constant loop which stays at $x_b$ for all $t \in [0,1]$, inverse of a loop is the same loop but traversed in an opposite direction. That is $\tau^{-1}(t) = \tau(1-t)$. To show associativity, consider the three loops $\tau_0, \tau_1,\tau_2$, the products $\tau_0 \cdot (\tau_1 \cdot \tau_2)$ and $(\tau_0 \cdot \tau_1) \cdot \tau_2$ is the concatenation of the loops traversing $\tau_0$ to $\tau_1$ and to $\tau_2$. Though the concatenation is not in same order, but we are only considering the class upto homotopy, the loops are the same, then we have that:
+\[
+    (\tau_0 \cdot \tau_1) \cdot \tau_2 = \tau_0 \cdot (\tau_1 \cdot \tau_2)
+\]
+which shows that the quotient set of loops with base point $x_b$ with respect to the equivalence class of homotopy on $X$ is a group. Such group is called the \textit{fundamental group} of $X$ and it is denoted $\pi_1(X)$.
+
+\subsection{Examples of Fundamental Groups}
+\begin{enumerate}
+  \item \textbf{Simply connected space}: Suppose that a topological $X$ is simply connected. In this case, all loop paths from a base point $x_b$  are homotopic, resulting in one equivalence class. The result is $\pi_1(X) = 1_G$, which is the group that consists of only the identity element\dots
+
+  \item \textbf{The Fundamental group of a Circle}: Suppose $X = \Sb^1$. In this case, there is an equvalence class of paths for each $i \in \ZZ$, if $i > 0$, then it means  that the path winds $i$ times around $\Sb^1$ in the counterclockwise direction and then returns to $x_b$. If $i < 0$, then the path winds around $i$ times in the clockwise direction. If $i = 0$, then the path is equivalent to the one that remains at $x_b$. The fundamental group is $\ZZ$, with respect to the operation of addition. If $\tau_1$ travels $i_1$ times counterclockwise, and $\tau_2$ travels $i_2$ times counterclockwise, then $\tau = \tau_1 \cdot \tau_2$ belongs to the class of loops that travel around $i_1 + i_2$ times counterclockwise. Now to consider additive inverses, suppose a path travels ten times around $\Sb^1$, and it is combined with a path that travels ten times in the opposite direction, the result is homotopic to a path that remains at $x_b$. Thus, we have that $\pi_1(\Sb^2) = \ZZ$.
+  \item \textbf{The fundamental group of Torus, $\TT$:} For the torus, $\pi_1(\TT^n) = \ZZ^n$, in which the $i$th component of $\TT^n$. The fundamental group $\ZZ^n$ is obtained by starting with a simply connected subset of the plane  and drilling out $n$ disjoint, bounded holes.
+    \begin{figure}[H]
+      \begin{center}
+        \includegraphics[width=0.85\textwidth]{sphere-homo}
+      \end{center}
+      \caption{A loop on a $2$-sphere (the surface of a ball) beiing contracted to a point \cite{enwiki:fg}
+}
+    \end{figure}
+\end{enumerate}
+The table below gives a summary of some space and the fundaental groups.
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c|c}
+    \hline
+    Space & Fundamenta group \\
+    \hline 
+    Convex subset of $\RR^n$ & Trivial \\
+    Circle & $\ZZ$ \\
+    $\Sb^n, n \ge 2$ & Trivial \\
+    Torus ($\TT^n$) & $\ZZ^n$ \\
+    Klein bottle & $\{a, b \mid a^2 = b^2\}$
+    \end{tabular}
+\end{table}
+
+More generally we give the following definition:
+
+\begin{defn}
+   Let $X$ be a patrh-connected topological space, and $n$ a fixed integer. The $n$-homotopy group of $X$ is defined to be 
+   \[  
+      \pi_n(X) := 
+   \]
+\end{defn}
 
 \section{Configuration Space}
 There is no way we can discuss the application of topology to robotics without discussing the configuration space, since that is the entry point of topology into the field of robotics.
