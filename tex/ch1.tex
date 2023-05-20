@@ -1,7 +1,7 @@
 \chapter{Introduction}
 \section{General Introduction}
-Even though the word \textit{Robot} was firstly used in the year 1921, the history of Robotics can be traced as far back to 420 B.C., which started with the invention of a wooden, steam-propelled bird by Arcytas of Tarentum called \textbf{the Flying Pigeon} which was able to fly on its own (Latombe 1991).
-As a robot is a machine which is capable of carrying out complex tasks automatically they are in different forms such as drones, humanoids, manipulator arm, etc.
+Even though the word \textit{Robot} was firstly used in the year 1921, the history of Robotics can be traced as far back to 420 B.C., which started with the invention of a wooden, steam-propelled bird by Arcytas of Tarentum called \textbf{the Flying Pigeon} which was able to fly on its own.
+As a robot is a machine which is capable of carrying out complex tasks automatically they are in different forms such as drones, humanoids, manipulator arm, etc \cite{latombe1991}.
 
 \subsection{Use Cases of Robotics}
 Robotics has a wide range of use cases in various industries and fields. Some of the most common use cases of robotics are:
@@ -11,7 +11,7 @@ Robotics has a wide range of use cases in various industries and fields. Some of
     \begin{figure}[H]
         \centering
         \includegraphics[scale=.225]{industral-robos.jpg}
-        \caption{Robotic Surgery an important application of Robotics in Medicine} 
+        \caption[Car assembling robots]{Robots being used for car assembling} 
     \end{figure}
 
     \item Healthcare: Robotics has been used in healthcare for various purposes, such as surgery, rehabilitation, and medication management. Robotic surgery is now commonly used for procedures such as prostatectomies, hysterectomies, and cardiac surgeries. Robotic exoskeletons are also used for rehabilitation of patients with mobility issues.
@@ -19,12 +19,18 @@ Robotics has a wide range of use cases in various industries and fields. Some of
     \begin{figure}[H]
     \centering
     \includegraphics[scale=.5]{robotic-surgery-illustration}
-    \caption{Robotic Surgery an important application of Robotics in Medicine} 
+    \caption[Robotic surgery schematic diagram]{Schematic representation of Robotic Surgery an important application of Robotics in Medicine} 
 \end{figure}
 
     \item Agriculture: Robotics has the potential to revolutionize the agriculture industry by automating tasks such as planting, harvesting, and crop monitoring. Drones are used for crop surveillance and mapping, while robotic tractors are used for planting and harvesting.
 
     \item Education: Robotics is used in education to teach students about programming, electronics, and mechanics. Robotics kits are used in classrooms to teach students how to build and program robots.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=1]{robo-lab}
+        \caption[Robot used in Biology and Chemistry lab]{Robot used in Biology and Chemistry Laboratory} 
+    \end{figure}
 
     \item Military and Defense: Robotics is used in the military and defense industries for tasks such as bomb disposal, surveillance, and reconnaissance. Unmanned aerial vehicles (UAVs), also known as drones, are used for reconnaissance and surveillance.
 
@@ -39,8 +45,9 @@ One of the major goals in Robotics is to develop autonomous robots capable perfo
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.5]{boston-dynamics-spot}
-    \caption{Spot an agile multipurpose robot from Boston dynamics} 
+    \caption[Boston dynamics robot (spot)]{Spot an agile multipurpose robot from Boston dynamics \protect\footnotemark} 
 \end{figure}
+\footnotetext{Boston dynamics is an American robotics design comapny.}
 However, developing the technologies necessary for autonomous robots is a formidable undertaking with deep interweaved ramifications in automated reasoning, control and perceprion, which raises many important problems, one of them which is \textbf{motion planning}, which is the major theme of this project work. Since we live in a dynamic and unpredictable environment it is not possible to explicitly describe all the possible motions that a robot may have to exeecute in order to accomplish a requested task. Hence the need for algorithms 
 
 This work focus on the topological study of robot motion planning algorithms using results from algebraic topology and some other important areas of mathematics, and we also give pratical computational simulation of robotic manipulator using the C++ and Python programming languages, the robotic operating system (ros) and Gazebo virtual robot simulator running on an Ubuntu Linux machine.
@@ -55,14 +62,18 @@ One common approach is to use sampling-based methods, such as the Probabilistic 
 
 To address these challenges, researchers have proposed various techniques that leverage the topology of the configuration space. For example, the Topological Roadmap (TRM) method constructs a graph that represents the topology of the configuration space by identifying critical points and their connectivity, allowing for efficient path planning even in high-dimensional spaces. Similarly, the Topological RRT (TRRT) method incorporates topology into the RRT algorithm by using a tree structure that preserves the topology of the configuration space.
 
-Algebraic approach to the problem of motion planning was introduced in 1983 by Schwartz and Sharir ~\cite{schwartz:1983a} where they present an algorithm for solving the two-diensional case of the problem, using the \textit{Piano movers problem} as a motivation. In 1988, John Canny studies the complexity of motion planning algorithms which is the study of the time taken for a given algorithm to move a robot from one configuration to another ~\cite{canny1988}.
+Algebraic approach to the problem of motion planning was introduced in 1983 by Schwartz and Sharir ~\cite{schwartz:1983a} where they present an algorithm for solving the two-diensional case of the problem, using the \textit{Piano movers problem} as a motivation. In 1988, John Canny studies the complexity of motion planning algorithms which is the study of the time taken for a given algorithm to move a robot from one configuration to another ~\cite{canny1988}. 
+
+Sampling approaches were also introduced in the work of LaVelle who introduces the Rapidly-Exploring Random Tree (RRT) algorithm, modification was also made to optimize the RRT algorithm with the development of RRT* algorithm by Michael Montemerlo. Till date many other algorithms (such as A*, Theta, Theta*, etc ) have been introduced to improve the existing algorithms.
 
 The topological approach to robot motion planning started in 2003-2004 by Michael Farber. His motivation was using tool from algebraic topology, whereby he considered a path connected topological space whose path space is equipped with the compact open topology. Using this the motion planning algorithm of any mechanical robot that moves in a configuration space is represented to be the funcion of input and output with the input being the two points (that is the current location of the robot and its destination) and the output is the path to be taken by the robot.
 
-In the earlier work of Farber he introduces an homotopy invariant called Topological complexity, which measures the minimum number of continuous motions required to move a robot from one configuration to another in a given configuration space. In this founding paper he was only concerned with the departing motion of the robot and not the returning motion, but made up for this in a subsequent work with M. Grant where the concept \textit{symmetric topological complexity} was introduced. This studies when the departing and returning motion of the robot are the same.
+In the earlier work of Farber he introduces an homotopy invariant called Topological complexity, which measures the minimum number of continuous motions required to move a robot from one configuration to another in a given configuration space \cite{farber2003topological}. In this founding paper he was only concerned with the departing motion of the robot and not the returning motion, but made up for this in a subsequent work with M. Grant where the concept \textit{symmetric topological complexity} was introduced. This studies when the departing and returning motion of the robot are the same \cite{farber2007symmetric}.
 
-Using the motivation of Farber and Grant, Mamouni and Derfourfi considered the case when the robot is allowed to take any arbitrary path to come back to its departure point, as in the case of the motion of drone, or an unmanned air-plane, or a guided TV camera, they studied homotopically and topologically the concept of \textit{loop motion planning algorithm (LMPA)}  and define the \textit{loop topological complexity} which is a generalization of the work of Farber and Grant.
+Using the motivation of Farber and Grant, Mamouni and Derfourfi considered the case when the robot is allowed to take any arbitrary path to come back to its departure point, as in the case of the motion of drone, or an unmanned air-plane, or a guided TV camera, they studied homotopically and topologically the concept of \textit{loop motion planning algorithm (LMPA)}  and define the \textit{loop topological complexity} which is a generalization of the work of Farber and Grant \cite{mamouni2022pure}.
 
-Mamouni and Derfoufi uses the F\'elix-Thomas generaization of the Chas-Sullivan \textit{String topology} into rational homotopy to make generalization of \textit{string topology} into a broad topological robotics settings.
+Mamouni and Derfoufi uses the F\'elix-Thomas generaization of the Chas-Sullivan \textit{String topology} into rational homotopy to make generalization of \textit{string topology} into a broad topological robotics settings and research still continues on that. 
+
+A very recent work by Farber, Cohen and Weeinberger studies the parametrized motion planning algorithms, where they introduced the parametrized topology complexity and study the collision free motion of multiple robots in a 3-dimensional space \cite{cohen2021topology}.
 
 

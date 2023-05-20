@@ -159,6 +159,8 @@ The spaces $X$ and $Y$ are \textit{homeomorphic} (or topologically equivalent) i
     \end{enumerate}
 \end{defn}
 
+\section{Path-connectedness and Homotopy}
+
 \begin{defn}[Path]
     Given any points $x,y$ in a topological space $X$, a path in $X$ from $x$ to $y$ is a continuous function $\alpha : [0,1] \lra X$ with $\alpha(0) = x$ and $\alpha(1) = y$, since we can rescale it to $\beta(t) = \alpha((b-a)t + a)$ for $t \in [0,1]$
 \end{defn}
@@ -184,6 +186,22 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
     If $F$ is the homotopy from $f$ to $g$ relative to $A$ we write $\disp f \htp{F} g \rel A.$
 \end{notn}
 
+\subsection*{Examples os homotopy}
+\begin{enumerate}
+    \item If $f,g : \RR \ra \RR^2$ are given by $f(x) = (x, x^3)$ and $g(x) = (x, e^x)$, then the map $H : \RR \times [0,1] \ra \RR^2$ given by 
+    \[
+        H (x,t) = \left(x, (1-t)x^3 + te^x\right) 
+    \]
+    is a homotopy between them.
+    \item Suppose $C \subseteq \RR$ is a convex subset of Euclidean space and $f,g : [0,1] \ra C$ are paths with the same endpoints, then there is \textit{straight line homotopy} given by
+    \begin{align*}
+        H : [0,1] \times [0,1] & \lra C \\
+        (s,t) & \mapsto (1-t) f(s) + tg(s)
+    \end{align*}
+
+
+\end{enumerate}
+
 \begin{lem}
     The relation of homotopy is an equivalence relation on the set of all maps from $X$ to $Y$.
 \end{lem}
@@ -200,21 +218,42 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
     so the relation is transitive.
 \end{proof}
 
+\begin{lem}\label{lem:hom-top-comp}
+    Homotopy behaves well with respect to composition of maps.
+\end{lem}
 
-%%%TODO State and proof the result on the behaviour of homotopy with respect to composition of maps
+\begin{proof}
+    Suppose we have the maps
+    \begin{center}
+        \begin{tikzcd}
+            X \arrow[r, bend left=30, "f"]
+            \arrow[r, "g"', rightarrow,bend right=30]
+            & Y \arrow[r, "h"] & Z
+            \end{tikzcd}
+    \end{center}
+    and if $f \htp{F} g \rel A$, then $hf \htp{hF} hg \rel A$ as maps from $X$ to $Z$. Also given the maps
+    \begin{center}
+        \begin{tikzcd}
+            X \arrow[r, "f"] & Y
+            \arrow[r, bend left=30, "g"]
+            \arrow[r, "h"', rightarrow,bend right=30]
+            & Z
+            \end{tikzcd}
+    \end{center}
+    with $g \htp{G} h \rel B$ for some subset $B$ of $Y$, then $gf \htp{F} hf \rel f^{-1} B$ via the homotopy $F(x,t) = G(f(x), t)$.
+\end{proof}
 
 \begin{defn}[Homotopy Type]
-Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, or homotopic), if there exists maps $f: X \lra Y$ and $g : Y \lra X$ such that $g \circ f \simeq 1_X$ and $f \circ g \simeq 1_X$
-\end{defn}
-
-
+Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, or homotopic), if there exists maps $f: X \lra Y$ and $g : Y \lra X$
 \begin{center}
     \begin{tikzcd}
-        X \arrow[r, bend left=50]
-        \arrow[r, leftarrow,bend right=50]
+        X \arrow[r, bend left=30, "f"]
+        \arrow[r, "g"', leftarrow,bend right=30]
         & Y
         \end{tikzcd}
-\end{center}
+\end{center} 
+such that $g \circ f \simeq 1_X$ and $f \circ g \simeq 1_X$
+\end{defn}
 
 
 \subsection*{Examples of Homotopic spaces}
@@ -228,8 +267,43 @@ Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, 
 \item Any convex subset of a Euclidean space is homotopic to a point.
 \end{enumerate}
 
+\begin{lem}
+    The relation $X \simeq Y$ is an equivalence relation on topological spaces.
+\end{lem}
 
-%%%TODO show that homotopy type is an equavalence relation.
+\begin{proof}
+    Reflexive and symmetric properties are obvious. To show transitivity consider the maps
+    \begin{center}
+        \begin{tikzcd}
+            X \arrow[r, bend left=30, "f"]
+            \arrow[r, "g"', leftarrow,bend right=30]
+            & Y
+            \end{tikzcd}
+\qquad
+            \begin{tikzcd}
+                Y \arrow[r, bend left=30, "u"]
+                \arrow[r, "v"', leftarrow,bend right=30]
+                & Z
+                \end{tikzcd}
+    \end{center} 
+    which are homotopy equivalences, the by lemma (\ref{lem:hom-top-comp})
+    \[
+        g \circ v \circ u \circ f \simeq g \circ 1_Y \circ f = g \circ f \simeq 1_X  
+    \]
+    and 
+    \[
+        u \circ f \circ g \circ v \simeq u \circ 1_Y \circ v = u \circ v \simeq 1_Z  
+    \]
+    Therefore the maps
+    \begin{center}
+            \begin{tikzcd}
+                Y \arrow[r, bend left=30, "u \circ f"]
+                \arrow[r, "g \circ v"', leftarrow,bend right=30]
+                & Z
+                \end{tikzcd}
+    \end{center}
+    show that $X$ and $Z$ have the same homotopy type.
+\end{proof}
 
 \begin{defn}[Contractible space]
 A space $X$ is called contractible if the identity map $1_X$ is homotopic to the constant map at some point of $X$.
@@ -274,10 +348,9 @@ Now, we give presentation on the construction of some basic manifolds that frequ
     \end{itemize}
     \begin{figure}[H]
         \centering
-        \includegraphics[scale=.85]{2d-manifolds}
-        \caption{Some 2D manifolds that can be obtained by identifying pairs of points along the boundary of a square region\cite{lavalle2006planning}}
+        \includegraphics[scale=.7]{2d-manifolds}
+        \caption[2D manifolds]{Some 2D manifolds that can be obtained by identifying pairs of points along the boundary of a square region\cite{lavalle2006planning}}
     \end{figure}
-    \item 
 \end{enumerate}
 
 
@@ -343,12 +416,13 @@ The table below gives a summary of some space and the fundaental groups.
 
 More generally we give the following definition:
 
-\begin{defn}
-   Let $X$ be a patrh-connected topological space, and $n$ a fixed integer. The $n$-homotopy group of $X$ is defined to be 
+\begin{defn}\cite{mamouni2022pure}
+   Let $X$ be a path-connected topological space, and $n$ a fixed integer. The $n$-homotopy group of $X$ is defined to be 
    \[  
-      \pi_n(X) := 
+      \pi_n(X) := \map(\Sb^n, X) / F
    \]
+   where, $F$ is homotopy on $X$, $\Sb^n$ is the unit sphere of $\RR^{n+1}$, and $\map(\Sb^n, X) / F$ the quotient set of continuous maps $\gamma: \Sb^n \lra X$, upto homotopy.
 \end{defn}
 
-\section{Configuration Space}
-There is no way we can discuss the application of topology to robotics without discussing the configuration space, since that is the entry point of topology into the field of robotics.
+% \section{Configuration Space}
+% There is no way we can discuss the application of topology to robotics without discussing the configuration space, since that is the entry point of topology into the field of robotics.
