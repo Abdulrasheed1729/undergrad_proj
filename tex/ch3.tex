@@ -1,0 +1,43 @@
+\chapter{Topological of Motion Planning Algorithms}
+
+\section{The problem of Motion planning}
+
+One of the greatest challenges in the building of autonomous robots lie in the area of automatic motion planning. The goal is to be able to specify a task in a high level language and have the robot automatically compile this specification into a set of low-level motion primitives, or feedback controllers, to accomplish the task. The prototypical task is to find a path for a robot, whether it is a robot arm or a mobile robot, from one configuration to another while avoiding obstacles.
+
+The classsical motion planning problem is that of the \textit{piano mover's problem} \cite{schwartz:1983a}. Given a three dimensional rigid body, for example a polyhedron, and a known set of obstacles, the problem is to find a collision-free path for the omnidirectional free-flying body from a start configuration to a goal configuration. The obstacles are assumed to be stationary and perfectly known, and execution of the planned path is exact. This is called offline planning, because planning is finished in advance of execution. 
+
+%%TODO include some graphics here for illustration.
+
+To solve this problem, motion planning algorithms are design to assign any pair of states of the system at the initial state and ending at the desired state.
+
+In a more formal way, let $X$ be a configuration space, let $PX$ denote the space of all continuous paths $\disp \gamma : [0,1] \ra X$ in $X$, and equip $PX$ with the compact-open topology, also denote by $\pi : PX \ra X \times X$ the map associating to any path $\gamma \in PX$ the pair of its initial and end points $\pi(\gamma) = (\gamma(0), \gamma(1))$. The motion palanning in $X$ consists of finding a function $s : X \times X \ra PX$ such that the composition $\pi \circ s = 1$, is the identity map, that is $s$ must be a section of $\pi$.
+
+\begin{defn}[Motion Planning Algorithm \cite{farber2003topological}]
+    Let $X$ be a configuration space, the motion planning algorithm of a mechanical robot that moves in $X$ is given as an input and output as below:
+    \begin{itemize}
+        \item Input: a pair $(A,B)$ of two given points in the configuration space $X$
+        \item Output: a continuus path from $A$ to $B$ aand hence a continuous section
+        \begin{align*}
+            s: X \times X \quad & \lra PX \\
+            (A,B)  & \mapsto s(A,B)
+        \end{align*}
+        of the canonical projection
+        \begin{align*}
+            \pi: PX  & \lra X \times X \\
+            \gamma & \mapsto (\gamma(0),\gamma(1))
+        \end{align*}
+    \end{itemize}
+\end{defn}
+
+\begin{rem}
+    The path connectedness of $X$ ensures the existence of such section. Its continuity, which ensures the robot stability while moving through, $X$  is equivalent to the contractibility of $X$, (i.e. $X$ is homotopic to a
+    point)
+\end{rem}
+
+\begin{defn}[Topological complexity, \cite{farber2003topological}]
+    Given a path connected space $X$, we define the topological complexity of the motion planning in $X$ as the minimal number $\tcomp(X) = k$, such that the cartesian product $X \times X$ may be covered by $k$ open subsets
+    \[
+        X \times X  = U_1 \cup U_2 \cup \dots \cup U_k  
+    \]
+    such that for any $i = 1,2, \ldots, k$ there exists a continuous motion planning $s_i: U_i \lra PX, \, \pi \circ s_i = 1_X$ over 
+\end{defn}
