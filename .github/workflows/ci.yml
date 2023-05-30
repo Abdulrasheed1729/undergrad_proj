@@ -13,8 +13,7 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v3
       - name: Compile LaTeX document
-        run: make run
-      #  uses: xu-cheng/latex-action@v2
-        # with:
-          # root_file: main.tex
-          # latexmk_use_lualatex: true
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+          latexmk_use_lualatex: true
