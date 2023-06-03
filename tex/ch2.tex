@@ -1,5 +1,7 @@
 \chapter{Basic Definitions and Theorems}
 
+
+
 \section{Path-connectedness and Homotopy}
 
 \begin{defn}[Path]
@@ -149,6 +151,63 @@ such that $g \circ f \simeq 1_X$ and $f \circ g \simeq 1_X$
 \begin{defn}[Contractible space]
 A space $X$ is called contractible if the identity map $1_X$ is homotopic to the constant map at some point of $X$.
 \end{defn}
+
+\begin{defn}[Paracompact space, \cite{enwiki:1156064780}]
+    Let $X$ be a topological space,
+    \begin{enumerate}
+        \item A \textit{refinement} of a cover of a space $X$ is a new cover of the same space such that every set in the new cover is a subset of some set in the old cover. That is if $V = \{V_\beta : \beta \in B\}$ are $U = \{U_\alpha : \alpha \in A\}$ are covers for $X$, we said that $V$ is a refinement of $U$ if and only if, for every $V_\beta \in V,$ there exists some $U_\alpha \in U$ such that $V_\beta \subseteq \in U_\alpha$.
+        \item An open cover of a space $X$ is \textit{locally finite} if every point of the space has a neighborhood that intersects only finitely many sets in the cover. That is $U = \{U_\alpha : \alpha \in A\}$ is locally finite if and only if, for any $x \in X$, there exists some neighbourhood $V$ of $x$ such that the set $\{\alpha \in A : U_\alpha \cap V \neq \emptyset\}$ is finite.
+        \item $X$ is \textit{paracompact} if every open cover has a locally finite open refinement. 
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}[Null-Homotopy]
+    A function $f$ is said to be \textit{null-homotopic} if it is homotopic to a constant function.
+\end{defn}
+
+\begin{defn}[Lusternik-Schnirelmann category, \cite{james1978category}]
+    Let $X$ be a topological space, the Lusternik-Schnirelmann category of $X$, denoted $\cat(X)$ is the smallest integer $k$ such that $X$ may be covered by $k$ open subsets 
+    \[
+        V_1 \cup V_2 \cup \ldots \cup V_k = X
+    \] 
+    with each inclusions $V_i \lra X$ null-homotopic.
+\end{defn}
+
+\begin{prop}\cite{james1978category}\label{james:1}
+    If $X$ is path-connected and paracompact then
+    \[
+        \cat(X) \le \dim(X) + 1  
+    \]
+\end{prop}
+
+\begin{proof}
+    Let $\{U_i\}_{i \in J}$ be an open covering of $X$ subordinated to the
+    partition of unity $\{\pi_i\}_{i\in J}$. For each $x \in X$ let $S(x)$ be the finite set of $j$ such that $\pi_j(x) > 0$. For each finite subset $S \subset J$ let $W(S)$ be the open subset of all $x \in X$ such that $u_i(x) < u_j(x)$ for all $i \notin S$ and $j \in S$. If $S$ and $S'$ are two distinct subsets of $J$ with the same number of elements then $W(S)$ and $W(S')$ are disjoint.
+
+    Now define $W_k (k = 1,2, \ldots)$ to be the union of all the sets $W(S(b))$ such that $S(b)$ has $k$ elements. Each of these sets $W(S(b))$ is open and is contained in the sets $U_j$ of the original covering for all $j \in S(b)$. Hence if $\{U_j\}$ is categorical then so is $\{W_k\}$, since $X$ is path-connected. Also the dimension of the nerve of $\{W_k\}$ is less or equal to $n + 1$, where $n = |J|$, hence we have the desired result. 
+\end{proof}
+
+\begin{prop}\cite{james1978category}\label{james:2}
+    Let $X$ be a path-connected paracompact space such that $\cat(X) \le n$. Then $X$ admits a categorical sequence of length $n$.
+\end{prop}
+
+\begin{proof}
+    Choose an open categorical covering $A_1, \ldots, A_n$ of $X$ and a partition of unity subordinated to this covering. We construct an open covering $U_1, \ldots, U_n$ of $X$ such that each member $U_i (i = 1, \ldots, n)$ is the union of a finite number of disjoint open sets each contained in a member of the original covering. Since $X$ is path-connected, then the new covering is categorical, and so the sequence $V_1 \subset \ldots \subset V_n = X$ is categorical, where $V_i$ is the union of the sets $W_j$ for $j > n-i$. 
+\end{proof}
+
+\begin{prop}\cite{james1978category}\label{james:3}
+    If $X$ and $Y$ are path-connected and paracompact then
+    \[
+        \cat(X \times Y) < \cat(X) + \cat(Y)  
+    \]
+\end{prop}
+
+\begin{proof}
+    Let $A_0 \subset \ldots \subset A_{m-1}$ and $B_0 \subset \ldots \subset B_{n-1}$ be categorical sequence for $X$ and $Y$ respectively. Then $C_0 \subset \ldots \subset C_{m+n-2}$ is a categorical sequence for $X \times Y$, where
+    \[
+        C_t = \bigcup_i (A_i \times B_{t-i}) 
+    \]
+\end{proof}
 
 \section{Manifolds}
 Before we give the definition of what a configuration space is we give some exposition of manifolds.

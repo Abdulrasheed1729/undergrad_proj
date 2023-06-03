@@ -6,14 +6,14 @@ BUILDDIR=build
 all: $(PROJECTNAME).pdf
 
 $(PROJECTNAME).pdf: $(PROJECTNAME).tex
-	latexmk -pdf -synctex=1 -verbose -bibtex -interaction=nonstopmode -file-line-error -output-directory=$(BUILDDIR) $<
+	latexmk -pdf -synctex=1 -verbose -bibtex -pvc -interaction=nonstopmode -file-line-error -output-directory=$(BUILDDIR) $<
 
 clean:
 	latexmk -output-directory=$(BUILDDIR) -c && rm -rf build/*
 
 ## For dev
-run:
-	latexmk main.tex -bibtex -pvc -f
+# run:
+# 	latexmk main.tex -bibtex -pvc -f
 # clear:
 # 	latexmk main.tex -CA
 # bib-gen:

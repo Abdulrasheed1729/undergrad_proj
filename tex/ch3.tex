@@ -1,31 +1,31 @@
-\chapter{Topological of Motion Planning Algorithms}
+\chapter{Topology of Motion Planning Algorithms}
 
 \section{The problem of Motion planning}
 
-One of the greatest challenges in the building of autonomous robots lie in the area of automatic motion planning. The goal is to be able to specify a task in a high level language and have the robot automatically compile this specification into a set of low-level motion primitives, or feedback controllers, to accomplish the task. The prototypical task is to find a path for a robot, whether it is a robot arm or a mobile robot, from one configuration to another while avoiding obstacles.
+Automatic motion planning presents a significant hurdle in the development of autonomous robots. The objective is to enable the specification of tasks using a high-level language and allow the robot to autonomously translate this specification into a series of low-level motion primitives or feedback controllers. This translation is crucial for successfully accomplishing the desired task, such as finding a path for a robot (e.g., robot arm or mobile robot) to move from one configuration to another while effectively avoiding obstacles.
 
-The classsical motion planning problem is that of the \textit{piano mover's problem} \cite{schwartz:1983a}. Given a three dimensional rigid body, for example a polyhedron, and a known set of obstacles, the problem is to find a collision-free path for the omnidirectional free-flying body from a start configuration to a goal configuration. The obstacles are assumed to be stationary and perfectly known, and execution of the planned path is exact. This is called offline planning, because planning is finished in advance of execution. 
+The classsical motion planning problem is that of the \textit{piano mover's problem} \cite{schwartz:1983a}. Given a three dimensional rigid body, for example a polyhedron, and a known set of obstacles, the problem is to find a collision-free path for the omnidirectional free-flying body from a start configuration to a goal configuration. The obstacles are assumed to be stationary and perfectly known, and execution of the planned path is exact. This is called offline planning, because planning is finished in advance of execution \cite{choset2005principles}.
 
 %%TODO include some graphics here for illustration.
 
 To solve this problem, motion planning algorithms are design to assign any pair of states of the system at the initial state and ending at the desired state.
 
-In a more formal way, let $X$ be a configuration space, let $PX$ denote the space of all continuous paths $\disp \gamma : [0,1] \ra X$ in $X$, and equip $PX$ with the compact-open topology, also denote by $\pi : PX \ra X \times X$ the map associating to any path $\gamma \in PX$ the pair of its initial and end points $\pi(\gamma) = (\gamma(0), \gamma(1))$. The motion palanning in $X$ consists of finding a function $s : X \times X \ra PX$ such that the composition $\pi \circ s = 1$, is the identity map, that is $s$ must be a section of $\pi$.
+In a more formal way, let $X$ be a configuration space, let $PX$ be the set of continuous paths $\disp \gamma : [0,1] \ra X$ in $X$, and equip $PX$ with the compact-open topology, also $\pi : PX \ra X \times X$ the map associating to any path $\gamma \in PX$ the pair of its initial and end points $\pi(\gamma) = (\gamma(0), \gamma(1))$. The motion palanning in $X$ consists of finding a function $s : X \times X \ra PX$ such that the composition $\pi \circ s = 1$, is the identity map, that is $s$ must be a section of $\pi$.
 
 \begin{defn}[Motion Planning Algorithm \cite{farber2003topological}]
     Let $X$ be a configuration space, the motion planning algorithm of a mechanical robot that moves in $X$ is given as an input and output as below:
     \begin{itemize}
         \item Input: a pair $(A,B)$ of two given points in the configuration space $X$
         \item Output: a continuus path from $A$ to $B$ aand hence a continuous section
-        \begin{align*}
-            s: X \times X \quad & \lra PX \\
-            (A,B)  & \mapsto s(A,B)
-        \end{align*}
-        of the canonical projection
-        \begin{align*}
-            \pi: PX  & \lra X \times X \\
-            \gamma & \mapsto (\gamma(0),\gamma(1))
-        \end{align*}
+              \begin{align*}
+                  s: X \times X \quad & \lra PX        \\
+                  (A,B)               & \mapsto s(A,B)
+              \end{align*}
+              of the canonical projection
+              \begin{align*}
+                  \pi: PX & \lra X \times X               \\
+                  \gamma  & \mapsto (\gamma(0),\gamma(1))
+              \end{align*}
     \end{itemize}
 \end{defn}
 
@@ -34,10 +34,92 @@ In a more formal way, let $X$ be a configuration space, let $PX$ denote the spac
     point)
 \end{rem}
 
+\begin{thm}\cite{farber2003topological}\label{farber:thm:1}
+    A continuous motion planning $s: X \times X \lra PX$ exists if and only if the configuration space $X$ is contractible.
+\end{thm}
+
+\begin{proof}
+    Suppose that a continuous section $s: X \times \ra PX$ exists. Fix a point $A_0 \in X$ and consider the homotopy \[ h_t : X \lra X, \quad h_t(B) = s(A_0, B)(t) \] where $B \in X$ and $t \in [0,1]$. We have $h_1(B) = B$ and $h_0(B) = A_0$. Thus $h_t$ gives a contraction of the space $X$ into the point $A_0 \in X$. Conversely, assume that there is a continuous homotopy $h_t: X \ra X$ such that $h_0(A) = A$ and $h_1(A) = A_0$ for any $A \in X$. Given a pair $(A,B) \in X \times X,$ we may compose the path $t \mapsto h_t(A)$ with the inverse of $t \mapsto h_t(B)$, which gives a continuous motion planning in $X$. Thus, we get a motion planning in a contractible space $X$ by first moving $A$ into the base point $A_0$ along the contraction, and then following the inverse of the path, which brings $B$ to $A_0$.
+\end{proof}
+
 \begin{defn}[Topological complexity, \cite{farber2003topological}]
     Given a path connected space $X$, we define the topological complexity of the motion planning in $X$ as the minimal number $\tcomp(X) = k$, such that the cartesian product $X \times X$ may be covered by $k$ open subsets
     \[
-        X \times X  = U_1 \cup U_2 \cup \dots \cup U_k  
+        X \times X  = U_1 \cup U_2 \cup \dots \cup U_k
     \]
-    such that for any $i = 1,2, \ldots, k$ there exists a continuous motion planning $s_i: U_i \lra PX, \, \pi \circ s_i = 1_X$ over 
+    such that for any $i = 1,2, \ldots, k$ there exists a continuous motion planning $s_i: U_i \lra PX, \, \pi \circ s_i = 1_X$ over $U_i$. If no such $k$ exists we set $\tcomp(X) = \infty$.
 \end{defn}
+
+\begin{rem}
+    $\tcomp(X)$ can also be defined in term of Schwartz genus\footnote{Let $p : E \ra B$ be a continuous map and $U \subseteq B$, the Schwartz genus of $p$ denoted $g(p)$, is the minimum cardinality among coverings of $B$ by open sets,over each of which $p$ has continuous section.}, that is $\tcomp(X)$ is the Schwartz genus of the patrh fibration $\pi : PX \ra X \times X$ \cite{farber2007symmetric}.
+
+    It is obvious intuitively that the topological complexity $\tcomp(X)$ is a measure of discontinuity.
+
+    To see this, suppose we are given an open cover and section $s_i$ as in the definition above, one may organize a motion planning algorithm as follows Given a pair of initial-desired configurations
+    $(A, B)$, we first find the subset $U_i$ with the smallest index $i$ such that $(A,B) \in U_i$ and then we give the path $s_i(A,B)$ as an output. Discontinuity of the output $s_i(A,B)$ as a function of the input $(A,B)$ is obvious: Suppose that $(A,B)$ is close to the boundary of $U_1$ and is close to a pair $(A', B') \in U_2 - U_1$; then the output $s_1(A,B)$ compared to $s_2(A',B')$ may be completely different, since the sections $\disp s_1|_{U_1 \cap U_2}$ and $\disp s_2|_{U_1 \cap U_2}$ are in general distinct.
+
+    It is also obvious from theorem (\ref{farber:thm:1}), that $\tcomp(X) = 1$ if and only if $X$ is contractible.
+\end{rem}
+
+\section{Properties of $\tcomp(X)$}
+
+\begin{thm}[Homotopy invariance, \cite{farber2003topological}]\label{homtopy:invariance}
+    $\tcomp(X)$ depends only on the homotopy type of $X$.
+\end{thm}
+
+\begin{proof}
+    Suppose that $X$ dominates $Y$, i.e. there exist continuous maps $f: X \ra Y$ and $g: Y \ra X$ such that $f \circ g \simeq 1_Y$. We show that $\tcomp(Y) \le \tcomp(X)$. Now assume that $U \subset X \times X$ is an open subset such that there exists a continuous motion planning $s : U \ra PX$ over $U$. Define $V = (g \times g)^{-1}(U) \subset Y \times Y$. We will construct a continuous motion planning $\sigma: V \ra PY$ over $V$ explicitly. Fix a homotopy $h_t: Y \ra Y$ with $h_0 = 1_Y$ and $h_1 = f \circ g$; here $t \in [0,1]$. For $(A,B) \in V$ and $\tau \in [0,1]$ set
+    \[
+        \sigma(A,B)(\tau) = \begin{cases}
+            h_{3\tau}               & 0 \le \tau \le \frac13       \\
+            h(s(gA, gB)(3\tau - 1)) & \frac13 \le \tau \le \frac23 \\
+            h_{3(1 - \tau)}         & \frac23 \le \tau \le 1
+        \end{cases}
+    \]
+    Thus we obtain that for $k = \tcomp(X)$ any open cover $U_1 \cup \ldots \cup U_k = X \times X$ with a continuous motion planning over each $U_i$ defines an open cover $V_1 \cup \ldots \cup V_k$ of $Y \times Y$ with the similar properties. And this shows that $\tcomp(Y) \le \tcomp(X)$, which is the desired result.
+\end{proof}
+
+\begin{thm}\label{upper:bound:lemma}
+    If $X$ is a path-connected and paracompact space then,
+    \[
+        \cat(X) \le \tcomp(X) \le 2 \cdot \cat(X) - 1
+    \]
+\end{thm}
+
+\begin{proof}
+    Let $U \subset X \times X$ be an open subset such that there exists a continuous motion planning $s: U \ra PX$ over $U$. Let $A_0$ be a fixed point in $X$. Let $V \subset X$ be the set of all points $B \in X$ such that $(A_0, B) \in U$. Then clearly $V$ is open and contractible in $X \times X$.
+
+    If $\tcomp(X) = k$ and $\cup_{i=1}^{k}U_i$ is a covering for $X \times X$ with a continuous motion planning over each $U_i$, then the sets $V_i$, where $A_0 \times V_i = U_i \cap (A_0 \times X)$ form a categorical open cover of $X$. This shows that $\tcomp(X) \ge \cat(X)$.
+
+    It is also obvious from above that $\tcomp(X) \le \cat(X \times X)$, and combined with the inequality $\cat(X \times X) \le 2 \cdot \cat(X) - 1$ in theorem \ref{james:2}. Combining these inequalities we have the desired result.
+\end{proof}
+
+\begin{thm}[An upper bound for \tcomp(X), \cite{farber2003topological}]
+    Let $X$ be any path-connected paracompact space, then
+    \[
+        \tcomp(X) \le 2 \cdot \dim(X) + 1
+    \]
+    In particular, if $X$ is a connected polyhedral subset of $\RR^n$ then the topological complexity $\tcomp(X)$ can be estimated from the above as follows
+    \[
+        \tcomp(X) \le 2n - 1
+    \]
+\end{thm}
+
+\begin{proof}
+    Since it is already known that $\cat(X) \le \dim(X) + 1$ (from theorem \ref{james:2}) and using the right inequality from theorem \ref{upper:bound:lemma}, we have the following
+    \begin{align*}
+        \tcomp(X) & \le 2 \cdot \cat(X) - 1 \\
+                  & \le 2 (\dim(X) + 1) - 1 \\
+                  & = 2 \cdot \dim(X) + 1
+    \end{align*}
+    Now, if $X \subset \RR^n$ is a connected polyhedral subset then $X$ has homotopy type of $(n-1)$-dimensional polyhedron $Y$. Using the homotopy invariance in theorem \ref{homtopy:invariance}, we have the following
+    \begin{align*}
+        \tcomp(X) & = \tcomp(Y)    \\
+                  & \le 2(n-1) + 1 \\
+                  & = 2n - 1
+    \end{align*}
+\end{proof}
+
+% \section{Motion Planning for some Surfaces}
+
+
