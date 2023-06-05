@@ -120,6 +120,28 @@ In a more formal way, let $X$ be a configuration space, let $PX$ be the set of c
     \end{align*}
 \end{proof}
 
-% \section{Motion Planning for some Surfaces}
+\begin{lem}
+    $\disp \tcomp(X) \ge \zdcl(H^*(X, \KK))$.
+\end{lem}
+
+\begin{proof}
+    Consider the following commutative diagram,
+    \[
+        \begin{tikzcd}
+            X \arrow[rd,"\beta" green] \arrow[r, "\alpha" blue] & PX \arrow[d, "\pi" red] \\
+            & X \times X
+        \end{tikzcd}
+    \]
+
+    From above $\alpha$ associates to any point $x \in X$ the constant path $[0,1] \ra X$ at this points, which is a homotopy equivalence. $\beta: X \ra X \times X$ is the diagonal map $\beta(x) = (x,x)$. The composition
+    \begin{equation}
+        H^*(X, \KK) \otimes H^*(X, \KK) \simeq H^*(X \times X, \KK) \xrightarrow{\pi^*} H^*(PX, \KK) \xrightarrow[\simeq]{\alpha^*} H^*(X, \KK)
+    \end{equation}
+    coincides with the cup-product homomorphism in (\ref{cup:product}). From definition, $\tcomp(X)$ is the Schwartz genus of the fibration $\pi: PX \ra X \times X$
+\end{proof}
+
+\section{Motion Planning for some Surfaces}
+
+
 
 

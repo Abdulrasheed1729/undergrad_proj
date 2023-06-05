@@ -12,16 +12,16 @@
 \end{defn}
 
 \begin{defn}[Homotopy]
-Let $X$ and $Y$ be two topological spaces, let $f,g : X \lra Y$ be maps and $I = [0,1]$. Then the \textit{homotopy} from $f$ to $g$ is the map $F: X \times I \lra Y$ such that $F(x,0) = f(x)$ and $F(x,1) = g(x)$ for all points $x \in X$.
+    Let $X$ and $Y$ be two topological spaces, let $f,g : X \lra Y$ be maps and $I = [0,1]$. Then the \textit{homotopy} from $f$ to $g$ is the map $F: X \times I \lra Y$ such that $F(x,0) = f(x)$ and $F(x,1) = g(x)$ for all points $x \in X$.
 \end{defn}
 
 \begin{notn}
-If $F$ is the homotopy from $f$ to $g$ we write $\disp f \htp{F} g.$
+    If $F$ is the homotopy from $f$ to $g$ we write $\disp f \htp{F} g.$
 \end{notn}
 
-If in addition, $f$ and $g$ agree on some subset $A$ of $X$, we may wish to deform $f$ to $g$ without altering the values of $f$ on $A$. IN this particular case, we define an homotopy $F$ from $f$ to $g$ with the additional property that 
+If in addition, $f$ and $g$ agree on some subset $A$ of $X$, we may wish to deform $f$ to $g$ without altering the values of $f$ on $A$. IN this particular case, we define an homotopy $F$ from $f$ to $g$ with the additional property that
 \[
-    F(a,t) = f(a) \quad \text{for all $a \in A$, and all $t \in I = [0,1]$}  
+    F(a,t) = f(a) \quad \text{for all $a \in A$, and all $t \in I = [0,1]$}
 \]
 when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
 
@@ -31,16 +31,16 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
 
 \subsection*{Examples os homotopy}
 \begin{enumerate}
-    \item If $f,g : \RR \ra \RR^2$ are given by $f(x) = (x, x^3)$ and $g(x) = (x, e^x)$, then the map $H : \RR \times [0,1] \ra \RR^2$ given by 
-    \[
-        H (x,t) = \left(x, (1-t)x^3 + te^x\right) 
-    \]
-    is a homotopy between them.
+    \item If $f,g : \RR \ra \RR^2$ are given by $f(x) = (x, x^3)$ and $g(x) = (x, e^x)$, then the map $H : \RR \times [0,1] \ra \RR^2$ given by
+          \[
+              H (x,t) = \left(x, (1-t)x^3 + te^x\right)
+          \]
+          is a homotopy between them.
     \item Suppose $C \subseteq \RR$ is a convex subset of Euclidean space and $f,g : [0,1] \ra C$ are paths with the same endpoints, then there is \textit{straight line homotopy} given by
-    \begin{align*}
-        H : [0,1] \times [0,1] & \lra C \\
-        (s,t) & \mapsto (1-t) f(s) + tg(s)
-    \end{align*}
+          \begin{align*}
+              H : [0,1] \times [0,1] & \lra C                     \\
+              (s,t)                  & \mapsto (1-t) f(s) + tg(s)
+          \end{align*}
 
 
 \end{enumerate}
@@ -54,7 +54,7 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
     Finally, if $f \htp{F} g$ and $g \htp{G} h$, then $f \htp{H} h$ where $H$ is defined by
     \begin{equation*}
         H(x,t) = \begin{cases}
-            F(x, 2t) & 0 \le t \le \frac12 \\
+            F(x, 2t)     & 0 \le t \le \frac12 \\
             G(x, 2t - 1) & \frac12 \le t \le 1
         \end{cases}
     \end{equation*}
@@ -72,7 +72,7 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
             X \arrow[r, bend left=30, "f"]
             \arrow[r, "g"', rightarrow,bend right=30]
             & Y \arrow[r, "h"] & Z
-            \end{tikzcd}
+        \end{tikzcd}
     \end{center}
     and if $f \htp{F} g \rel A$, then $hf \htp{hF} hg \rel A$ as maps from $X$ to $Z$. Also given the maps
     \begin{center}
@@ -81,33 +81,33 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
             \arrow[r, bend left=30, "g"]
             \arrow[r, "h"', rightarrow,bend right=30]
             & Z
-            \end{tikzcd}
+        \end{tikzcd}
     \end{center}
     with $g \htp{G} h \rel B$ for some subset $B$ of $Y$, then $gf \htp{F} hf \rel f^{-1} B$ via the homotopy $F(x,t) = G(f(x), t)$.
 \end{proof}
 
 \begin{defn}[Homotopy Type]
-Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, or homotopic), if there exists maps $f: X \lra Y$ and $g : Y \lra X$
-\begin{center}
-    \begin{tikzcd}
-        X \arrow[r, bend left=30, "f"]
-        \arrow[r, "g"', leftarrow,bend right=30]
-        & Y
+    Two spaces $X$ and $Y$ have the same homotopy type (or are homotopy equivalent, or homotopic), if there exists maps $f: X \lra Y$ and $g : Y \lra X$
+    \begin{center}
+        \begin{tikzcd}
+            X \arrow[r, bend left=30, "f"]
+            \arrow[r, "g"', leftarrow,bend right=30]
+            & Y
         \end{tikzcd}
-\end{center} 
-such that $g \circ f \simeq 1_X$ and $f \circ g \simeq 1_X$
+    \end{center}
+    such that $g \circ f \simeq 1_X$ and $f \circ g \simeq 1_X$
 \end{defn}
 
 
 \subsection*{Examples of Homotopic spaces}
 \begin{enumerate}
-\item All homeomorphic spaces are homotopic.
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=1]{images/mug-and-donut-homotopy-equivalence}
-    \caption{Deformation of a coffee mug to donut showing the equivalence of both subspace of $\RR^3$}
-\end{figure}
-\item Any convex subset of a Euclidean space is homotopic to a point.
+    \item All homeomorphic spaces are homotopic.
+          \begin{figure}[H]
+              \centering
+              \includegraphics[scale=1]{images/mug-and-donut-homotopy-equivalence}
+              \caption{Deformation of a coffee mug to donut showing the equivalence of both subspace of $\RR^3$}
+          \end{figure}
+    \item Any convex subset of a Euclidean space is homotopic to a point.
 \end{enumerate}
 
 \begin{lem}
@@ -121,35 +121,35 @@ such that $g \circ f \simeq 1_X$ and $f \circ g \simeq 1_X$
             X \arrow[r, bend left=30, "f"]
             \arrow[r, "g"', leftarrow,bend right=30]
             & Y
-            \end{tikzcd}
-\qquad
-            \begin{tikzcd}
-                Y \arrow[r, bend left=30, "u"]
-                \arrow[r, "v"', leftarrow,bend right=30]
-                & Z
-                \end{tikzcd}
-    \end{center} 
+        \end{tikzcd}
+        \qquad
+        \begin{tikzcd}
+            Y \arrow[r, bend left=30, "u"]
+            \arrow[r, "v"', leftarrow,bend right=30]
+            & Z
+        \end{tikzcd}
+    \end{center}
     which are homotopy equivalences, the by lemma (\ref{lem:hom-top-comp})
     \[
-        g \circ v \circ u \circ f \simeq g \circ 1_Y \circ f = g \circ f \simeq 1_X  
+        g \circ v \circ u \circ f \simeq g \circ 1_Y \circ f = g \circ f \simeq 1_X
     \]
-    and 
+    and
     \[
-        u \circ f \circ g \circ v \simeq u \circ 1_Y \circ v = u \circ v \simeq 1_Z  
+        u \circ f \circ g \circ v \simeq u \circ 1_Y \circ v = u \circ v \simeq 1_Z
     \]
     Therefore the maps
     \begin{center}
-            \begin{tikzcd}
-                Y \arrow[r, bend left=30, "u \circ f"]
-                \arrow[r, "g \circ v"', leftarrow,bend right=30]
-                & Z
-                \end{tikzcd}
+        \begin{tikzcd}
+            Y \arrow[r, bend left=30, "u \circ f"]
+            \arrow[r, "g \circ v"', leftarrow,bend right=30]
+            & Z
+        \end{tikzcd}
     \end{center}
     show that $X$ and $Z$ have the same homotopy type.
 \end{proof}
 
 \begin{defn}[Contractible space]
-A space $X$ is called contractible if the identity map $1_X$ is homotopic to the constant map at some point of $X$.
+    A space $X$ is called contractible if the identity map $1_X$ is homotopic to the constant map at some point of $X$.
 \end{defn}
 
 \begin{defn}[Paracompact space, \cite{enwiki:1156064780}]
@@ -157,7 +157,7 @@ A space $X$ is called contractible if the identity map $1_X$ is homotopic to the
     \begin{enumerate}
         \item A \textit{refinement} of a cover of a space $X$ is a new cover of the same space such that every set in the new cover is a subset of some set in the old cover. That is if $V = \{V_\beta : \beta \in B\}$ are $U = \{U_\alpha : \alpha \in A\}$ are covers for $X$, we said that $V$ is a refinement of $U$ if and only if, for every $V_\beta \in V,$ there exists some $U_\alpha \in U$ such that $V_\beta \subseteq \in U_\alpha$.
         \item An open cover of a space $X$ is \textit{locally finite} if every point of the space has a neighborhood that intersects only finitely many sets in the cover. That is $U = \{U_\alpha : \alpha \in A\}$ is locally finite if and only if, for any $x \in X$, there exists some neighbourhood $V$ of $x$ such that the set $\{\alpha \in A : U_\alpha \cap V \neq \emptyset\}$ is finite.
-        \item $X$ is \textit{paracompact} if every open cover has a locally finite open refinement. 
+        \item $X$ is \textit{paracompact} if every open cover has a locally finite open refinement.
     \end{enumerate}
 \end{defn}
 
@@ -166,17 +166,17 @@ A space $X$ is called contractible if the identity map $1_X$ is homotopic to the
 \end{defn}
 
 \begin{defn}[Lusternik-Schnirelmann category, \cite{james1978category}]
-    Let $X$ be a topological space, the Lusternik-Schnirelmann category of $X$, denoted $\cat(X)$ is the smallest integer $k$ such that $X$ may be covered by $k$ open subsets 
+    Let $X$ be a topological space, the Lusternik-Schnirelmann category of $X$, denoted $\cat(X)$ is the smallest integer $k$ such that $X$ may be covered by $k$ open subsets
     \[
         V_1 \cup V_2 \cup \ldots \cup V_k = X
-    \] 
+    \]
     with each inclusions $V_i \lra X$ null-homotopic.
 \end{defn}
 
 \begin{prop}\cite{james1978category}\label{james:1}
     If $X$ is path-connected and paracompact then
     \[
-        \cat(X) \le \dim(X) + 1  
+        \cat(X) \le \dim(X) + 1
     \]
 \end{prop}
 
@@ -184,7 +184,7 @@ A space $X$ is called contractible if the identity map $1_X$ is homotopic to the
     Let $\{U_i\}_{i \in J}$ be an open covering of $X$ subordinated to the
     partition of unity $\{\pi_i\}_{i\in J}$. For each $x \in X$ let $S(x)$ be the finite set of $j$ such that $\pi_j(x) > 0$. For each finite subset $S \subset J$ let $W(S)$ be the open subset of all $x \in X$ such that $u_i(x) < u_j(x)$ for all $i \notin S$ and $j \in S$. If $S$ and $S'$ are two distinct subsets of $J$ with the same number of elements then $W(S)$ and $W(S')$ are disjoint.
 
-    Now define $W_k (k = 1,2, \ldots)$ to be the union of all the sets $W(S(b))$ such that $S(b)$ has $k$ elements. Each of these sets $W(S(b))$ is open and is contained in the sets $U_j$ of the original covering for all $j \in S(b)$. Hence if $\{U_j\}$ is categorical then so is $\{W_k\}$, since $X$ is path-connected. Also the dimension of the nerve of $\{W_k\}$ is less or equal to $n + 1$, where $n = |J|$, hence we have the desired result. 
+    Now define $W_k (k = 1,2, \ldots)$ to be the union of all the sets $W(S(b))$ such that $S(b)$ has $k$ elements. Each of these sets $W(S(b))$ is open and is contained in the sets $U_j$ of the original covering for all $j \in S(b)$. Hence if $\{U_j\}$ is categorical then so is $\{W_k\}$, since $X$ is path-connected. Also the dimension of the nerve of $\{W_k\}$ is less or equal to $n + 1$, where $n = |J|$, hence we have the desired result.
 \end{proof}
 
 \begin{prop}\cite{james1978category}\label{james:2}
@@ -192,27 +192,56 @@ A space $X$ is called contractible if the identity map $1_X$ is homotopic to the
 \end{prop}
 
 \begin{proof}
-    Choose an open categorical covering $A_1, \ldots, A_n$ of $X$ and a partition of unity subordinated to this covering. We construct an open covering $U_1, \ldots, U_n$ of $X$ such that each member $U_i (i = 1, \ldots, n)$ is the union of a finite number of disjoint open sets each contained in a member of the original covering. Since $X$ is path-connected, then the new covering is categorical, and so the sequence $V_1 \subset \ldots \subset V_n = X$ is categorical, where $V_i$ is the union of the sets $W_j$ for $j > n-i$. 
+    Choose an open categorical covering $A_1, \ldots, A_n$ of $X$ and a partition of unity subordinated to this covering. We construct an open covering $U_1, \ldots, U_n$ of $X$ such that each member $U_i (i = 1, \ldots, n)$ is the union of a finite number of disjoint open sets each contained in a member of the original covering. Since $X$ is path-connected, then the new covering is categorical, and so the sequence $V_1 \subset \ldots \subset V_n = X$ is categorical, where $V_i$ is the union of the sets $W_j$ for $j > n-i$.
 \end{proof}
 
 \begin{prop}\cite{james1978category}\label{james:3}
     If $X$ and $Y$ are path-connected and paracompact then
     \[
-        \cat(X \times Y) < \cat(X) + \cat(Y)  
+        \cat(X \times Y) < \cat(X) + \cat(Y)
     \]
 \end{prop}
 
 \begin{proof}
     Let $A_0 \subset \ldots \subset A_{m-1}$ and $B_0 \subset \ldots \subset B_{n-1}$ be categorical sequence for $X$ and $Y$ respectively. Then $C_0 \subset \ldots \subset C_{m+n-2}$ is a categorical sequence for $X \times Y$, where
     \[
-        C_t = \bigcup_i (A_i \times B_{t-i}) 
+        C_t = \bigcup_i (A_i \times B_{t-i})
     \]
 \end{proof}
+
+\section{Cohomology classes }
+
+One of the very important concept in proving result in algebraic is the cup-product, if $\KK$ is a field the cohomology $H^*(X, \KK)$ is a graded $\KK$-algebra with the multiplication
+\begin{equation}\label{cup:product}
+    \cup: H^*(X, \KK) \otimes H^*(X, \KK) \lra H^*(X, \KK)
+\end{equation}
+given by the cup-product and the tensor product $H^*(X, \KK) \otimes H^*(X, \KK)$ is also a graded $\KK-$algebra with the multiplication
+\begin{equation}\label{eqn:6:farber}
+    (u_1 \otimes v_1) \cdot (u_2 \otimes v_2) = (-1)^{\abs{v_1} \cdot \abs{u_2}} u_1 u_2 \otimes v_1v_2
+\end{equation}
+Here $\abs{v_1}$ and $\abs{u_2}$ denote the degrees of cohomology classes $v_1$ and $u_2$ correspondingly, and the cup-product in equaion (\ref{cup:product}) is an algebra homomorphism.
+
+\begin{defn}[Zero-Divisors-Cup-Length, \cite{farber2003topological}]
+    The kernel of the homomorphism (i.e the definition in equation \ref{cup:product}) will be called the ideal of zero-divisors of $H^*(X, \KK)$. The zero-divisors-cup-length, denoted $\zdcl$ of $H^*(X, \KK)$ is the length of the longest nontrivial product in the ideals of zero-divisors of $H^*(X, \KK)$.
+\end{defn}
+As an example, let $X = \Sb^n$ and $u \in H^n(\Sb^n, \KK)$ be the fundamental class, and $1 \in H^0(\Sb^n, \KK)$ be the unit. Then $a = 1 \otimes u - u \otimes 1 \in H^*(\Sb^n, \KK) \otimes H^*(\Sb^n, \KK)$ is a zero-divisor, since applying the homomorphism in (\ref{cup:product}) to $a$ we ontain $1 \cdot u - u\cdot 1 = 0$. Another zero-divisor is $b = u \otimes \otimes u$, since $b^2 = 0$. Computing $a^2 = a \cdot a$, by means of equation (\ref{eqn:6:farber}) we find
+\[
+    a^2 = \left((-1^{n-1}) - 1\right) \cdot u \otimes u  
+\]
+Hence $a = - 2b$ for $n$ even and $a^2 = 0$ for $n$ odd; the product $ab$ vanishes for $n$. Thus in conclusion we have the following:
+\[
+    \zdcl(H^*(\Sb^n, \KK)) = \begin{cases}
+        1 & \text{if $n$ is odd} \\
+        2 & \text{if $n$ is even}
+    \end{cases}  
+\]
+
+
 
 \section{Manifolds}
 Before we give the definition of what a configuration space is we give some exposition of manifolds.
 \begin{defn}[Manifold\cite{lavalle2006planning}]
-    A topological space $M \subseteq \RR^m$ is a \textit{manifold} if for every $x \in M$, there exists an open set $O \subset M$ such that 
+    A topological space $M \subseteq \RR^m$ is a \textit{manifold} if for every $x \in M$, there exists an open set $O \subset M$ such that
     \begin{enumerate}
         \item $x \in O$
         \item $O$ is homeomorphic to $\RR^n$
@@ -236,21 +265,21 @@ Now, we give presentation on the construction of some basic manifolds that frequ
 \begin{enumerate}
     \item \textbf{$1D$ manifolds}: A very obvious example of a one dimensional manifold is $\RR$, since by homeomorphism $\RR$ looks like $\RR$ in the vicinity of every point. The range can be restricted to the unit interval to yield the manifold $(0,1)$ since they are homeomorphic.
 
-    Another example of a $1D$ manifold is a circle, say $\Sb^1$, where
-    \[
-        \Sb^1 = \{(x,y) \in \RR^2 \mid x^2 + y^2  = 1\}
-    \]
-    \item \textbf{$2D$ manifolds}: Many important $2D$ manifolds can be formed by applying cartesian product to $1D$ manifolds. 
-    \begin{itemize}
-        \item The $2D$ manifold $\RR^2$ is formed by $\RR \times \RR$ 
-        \item The product $\RR \times \Sb^1$ defines a manifold that is equivalent to an infinite cylinder
-        \item Also, $\Sb^1 \times \Sb^1$ is a manifold that is equivalent to a torus.
-    \end{itemize}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=.7]{images/2d-manifolds}
-        \caption[2D manifolds]{Some 2D manifolds that can be obtained by identifying pairs of points along the boundary of a square region\cite{lavalle2006planning}}
-    \end{figure}
+          Another example of a $1D$ manifold is a circle, say $\Sb^1$, where
+          \[
+              \Sb^1 = \{(x,y) \in \RR^2 \mid x^2 + y^2  = 1\}
+          \]
+    \item \textbf{$2D$ manifolds}: Many important $2D$ manifolds can be formed by applying cartesian product to $1D$ manifolds.
+          \begin{itemize}
+              \item The $2D$ manifold $\RR^2$ is formed by $\RR \times \RR$
+              \item The product $\RR \times \Sb^1$ defines a manifold that is equivalent to an infinite cylinder
+              \item Also, $\Sb^1 \times \Sb^1$ is a manifold that is equivalent to a torus.
+          \end{itemize}
+          \begin{figure}[H]
+              \centering
+              \includegraphics[scale=.7]{images/2d-manifolds}
+              \caption[2D manifolds]{Some 2D manifolds that can be obtained by identifying pairs of points along the boundary of a square region\cite{lavalle2006planning}}
+          \end{figure}
 \end{enumerate}
 
 
@@ -268,16 +297,16 @@ Now, let $\alpha$ be a loop and let some $x_b$ be designated as a base point. Fo
 Let $\tau_1 : [0,1] \ra X$ and $\tau_2 : [0,1] \ra X$ be two loop paths with the same base point. We define their product as $\tau = \tau_1 \cdot \tau_2$ and is defined as
 \begin{equation}\label{eqn:fgbo}
     \tau(t) = (\tau_1 \cdot \tau_2)(t) = \begin{cases}
-        \tau_1(2t) & 0 \le t < \frac12 \\
+        \tau_1(2t)     & 0 \le t < \frac12   \\
         \tau_2(2t - 1) & \frac12 \le t \le 1
-    \end{cases}  
+    \end{cases}
 \end{equation}
 
 This results in a continuous loop path because $\tau_1$ terminates at $x_b$, and $\tau_2$ begins at $x_b$. That is the two paths are concatenated end to end.
 
 Suppose now that the equivalence relation induced by homotopy is applied to the set of all loop paths through a fixed point, $xb$ . It will no longer be important which particular path was chosen from a class; any representative may be used. The equivalence relation also applies when the set of loops is interpreted as a group. The group operation actually occurs over the set of equivalences of paths.
 
-The quotient set of the set of loops illustrated above and the equivalence class of homotopy form a group with respect to the binary operation $\cdot$ defined in (\ref{eqn:fgbo}) above and its construction is illustrated below. 
+The quotient set of the set of loops illustrated above and the equivalence class of homotopy form a group with respect to the binary operation $\cdot$ defined in (\ref{eqn:fgbo}) above and its construction is illustrated below.
 
 The identity element is the constant loop which stays at $x_b$ for all $t \in [0,1]$, inverse of a loop is the same loop but traversed in an opposite direction. That is $\tau^{-1}(t) = \tau(1-t)$. To show associativity, consider the three loops $\tau_0, \tau_1,\tau_2$, the products $\tau_0 \cdot (\tau_1 \cdot \tau_2)$ and $(\tau_0 \cdot \tau_1) \cdot \tau_2$ is the concatenation of the loops traversing $\tau_0$ to $\tau_1$ and to $\tau_2$. Though the concatenation is not in same order, but we are only considering the class upto homotopy, the loops are the same, then we have that:
 \[
@@ -287,50 +316,51 @@ which shows that the quotient set of loops with base point $x_b$ with respect to
 
 \subsection{Examples of Fundamental Groups}
 \begin{enumerate}
-  \item \textbf{Simply connected space}: Suppose that a topological $X$ is simply connected. In this case, all loop paths from a base point $x_b$  are homotopic, resulting in one equivalence class. The result is $\pi_1(X) = 1_G$, which is the group that consists of only the identity element\dots
+    \item \textbf{Simply connected space}: Suppose that a topological $X$ is simply connected. In this case, all loop paths from a base point $x_b$  are homotopic, resulting in one equivalence class. The result is $\pi_1(X) = 1_G$, which is the group that consists of only the identity element\dots
 
-  \item \textbf{The Fundamental group of a Circle}: Suppose $X = \Sb^1$. In this case, there is an equvalence class of paths for each $i \in \ZZ$, if $i > 0$, then it means  that the path winds $i$ times around $\Sb^1$ in the counterclockwise direction and then returns to $x_b$. If $i < 0$, then the path winds around $i$ times in the clockwise direction. If $i = 0$, then the path is equivalent to the one that remains at $x_b$. The fundamental group is $\ZZ$, with respect to the operation of addition. If $\tau_1$ travels $i_1$ times counterclockwise, and $\tau_2$ travels $i_2$ times counterclockwise, then $\tau = \tau_1 \cdot \tau_2$ belongs to the class of loops that travel around $i_1 + i_2$ times counterclockwise. Now to consider additive inverses, suppose a path travels ten times around $\Sb^1$, and it is combined with a path that travels ten times in the opposite direction, the result is homotopic to a path that remains at $x_b$. Thus, we have that $\pi_1(\Sb^2) = \ZZ$.
-  \item \textbf{The fundamental group of Torus, $\TT$:} For the torus, $\pi_1(\TT^n) = \ZZ^n$, in which the $i$th component of $\TT^n$. The fundamental group $\ZZ^n$ is obtained by starting with a simply connected subset of the plane  and drilling out $n$ disjoint, bounded holes.
-    \begin{figure}[H]
-      \begin{center}
-        \includegraphics[width=0.85\textwidth]{images/sphere-homo}
-      \end{center}
-      \caption{A loop on a $2$-sphere (the surface of a ball) beiing contracted to a point \cite{enwiki:fg}
-}
-    \end{figure}
+    \item \textbf{The Fundamental group of a Circle}: Suppose $X = \Sb^1$. In this case, there is an equvalence class of paths for each $i \in \ZZ$, if $i > 0$, then it means  that the path winds $i$ times around $\Sb^1$ in the counterclockwise direction and then returns to $x_b$. If $i < 0$, then the path winds around $i$ times in the clockwise direction. If $i = 0$, then the path is equivalent to the one that remains at $x_b$. The fundamental group is $\ZZ$, with respect to the operation of addition. If $\tau_1$ travels $i_1$ times counterclockwise, and $\tau_2$ travels $i_2$ times counterclockwise, then $\tau = \tau_1 \cdot \tau_2$ belongs to the class of loops that travel around $i_1 + i_2$ times counterclockwise. Now to consider additive inverses, suppose a path travels ten times around $\Sb^1$, and it is combined with a path that travels ten times in the opposite direction, the result is homotopic to a path that remains at $x_b$. Thus, we have that $\pi_1(\Sb^2) = \ZZ$.
+    \item \textbf{The fundamental group of Torus, $\TT$:} For the torus, $\pi_1(\TT^n) = \ZZ^n$, in which the $i$th component of $\TT^n$. The fundamental group $\ZZ^n$ is obtained by starting with a simply connected subset of the plane  and drilling out $n$ disjoint, bounded holes.
+          \begin{figure}[H]
+              \begin{center}
+                  \includegraphics[width=0.85\textwidth]{images/sphere-homo}
+              \end{center}
+              \caption{A loop on a $2$-sphere (the surface of a ball) beiing contracted to a point \cite{enwiki:fg}
+              }
+          \end{figure}
 \end{enumerate}
 The table below gives a summary of some space and the fundaental groups.
 \begin{table}[H]
-  \centering
-  \begin{tabular}{c|c}
-    \hline
-    Space & Fundamenta group \\
-    \hline 
-    Convex subset of $\RR^n$ & Trivial \\
-    Circle & $\ZZ$ \\
-    $\Sb^n, n \ge 2$ & Trivial \\
-    Torus ($\TT^n$) & $\ZZ^n$ \\
-    Klein bottle & $\{a, b \mid a^2 = b^2\}$
+    \centering
+    \begin{tabular}{c|c}
+        \hline
+        Space                    & Fundamenta group          \\
+        \hline
+        Convex subset of $\RR^n$ & Trivial                   \\
+        Circle                   & $\ZZ$                     \\
+        $\Sb^n, n \ge 2$         & Trivial                   \\
+        Torus ($\TT^n$)          & $\ZZ^n$                   \\
+        Klein bottle             & $\{a, b \mid a^2 = b^2\}$
     \end{tabular}
 \end{table}
 
 More generally we give the following definition:
 
 \begin{defn}\cite{mamouni2022pure}
-   Let $X$ be a path-connected topological space, and $n$ a fixed integer. The $n$-homotopy group of $X$ is defined to be 
-   \[  
-      \pi_n(X) := \map(\Sb^n, X) / F
-   \]
-   where, $F$ is homotopy on $X$, $\Sb^n$ is the unit sphere of $\RR^{n+1}$, and $\map(\Sb^n, X) / F$ the quotient set of continuous maps $\gamma: \Sb^n \lra X$, upto homotopy.
+    Let $X$ be a path-connected topological space, and $n$ a fixed integer. The $n$-homotopy group of $X$ is defined to be
+    \[
+        \pi_n(X) := \map(\Sb^n, X) / F
+    \]
+    where, $F$ is homotopy on $X$, $\Sb^n$ is the unit sphere of $\RR^{n+1}$, and $\map(\Sb^n, X) / F$ the quotient set of continuous maps $\gamma: \Sb^n \lra X$, upto homotopy.
 \end{defn}
 
 \begin{rem}
-  With respect to the denotations above, it is worth to note the following:
-  \begin{itemize}
-    \item The homotopy groups $\pi_n$ are Abelian for $n \ge 2$.
-    \item $\pi_0(X)$ is nothing other than the set of the path components of $X$.
-  \end{itemize}
+    With respect to the denotations above, it is worth to note the following:
+    \begin{itemize}
+        \item The homotopy groups $\pi_n$ are Abelian for $n \ge 2$.
+        \item $\pi_0(X)$ is nothing other than the set of the path components of $X$.
+    \end{itemize}
 \end{rem}
+
 
 % \section{Configuration Space}
 
