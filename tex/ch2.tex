@@ -29,7 +29,7 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
     If $F$ is the homotopy from $f$ to $g$ relative to $A$ we write $\disp f \htp{F} g \rel A.$
 \end{notn}
 
-\subsection*{Examples os homotopy}
+\subsection*{Examples of homotopy}
 \begin{enumerate}
     \item If $f,g : \RR \ra \RR^2$ are given by $f(x) = (x, x^3)$ and $g(x) = (x, e^x)$, then the map $H : \RR \times [0,1] \ra \RR^2$ given by
           \[
@@ -148,6 +148,10 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
     show that $X$ and $Z$ have the same homotopy type.
 \end{proof}
 
+\begin{defn}[Schwarz genus, \cite{schwarz1961genus}]
+    Let $p : E \ra B$ be a continuous map and $U \subseteq B$, the Schwartz genus of $p$ denoted $g(p)$, is the minimum cardinality among coverings of $B$ by open sets,over each of which $p$ has continuous section.
+\end{defn}
+
 \begin{defn}[Contractible space]
     A space $X$ is called contractible if the identity map $1_X$ is homotopic to the constant map at some point of $X$.
 \end{defn}
@@ -209,7 +213,7 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
     \]
 \end{proof}
 
-\section{Cohomology classes }
+\section{Zero Divisor Cup Length}
 
 One of the very important concept in proving result in algebraic is the cup-product, if $\KK$ is a field the cohomology $H^*(X, \KK)$ is a graded $\KK$-algebra with the multiplication
 \begin{equation}\label{cup:product}
@@ -229,12 +233,12 @@ As an example, let $X = \Sb^n$ and $u \in H^n(\Sb^n, \KK)$ be the fundamental cl
     a^2 = \left((-1^{n-1}) - 1\right) \cdot u \otimes u  
 \]
 Hence $a = - 2b$ for $n$ even and $a^2 = 0$ for $n$ odd; the product $ab$ vanishes for $n$. Thus in conclusion we have the following:
-\[
+\begin{equation}\label{zdcl:of:sphere}
     \zdcl(H^*(\Sb^n, \KK)) = \begin{cases}
         1 & \text{if $n$ is odd} \\
         2 & \text{if $n$ is even}
     \end{cases}  
-\]
+\end{equation}
 
 
 
@@ -362,5 +366,7 @@ More generally we give the following definition:
 \end{rem}
 
 
-% \section{Configuration Space}
+\section{Configuration Space}
+
+The configuration space of a robot is a topological space, usually denoted $\cal{C}$ whose points parameterize the possible configurations of the robot.
 

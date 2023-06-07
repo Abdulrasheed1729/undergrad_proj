@@ -1,6 +1,6 @@
 \chapter{Topology of Motion Planning Algorithms}
 
-\section{The problem of Motion planning}
+\section{Introduction}
 
 Automatic motion planning presents a significant hurdle in the development of autonomous robots. The objective is to enable the specification of tasks using a high-level language and allow the robot to autonomously translate this specification into a series of low-level motion primitives or feedback controllers. This translation is crucial for successfully accomplishing the desired task, such as finding a path for a robot (e.g., robot arm or mobile robot) to move from one configuration to another while effectively avoiding obstacles.
 
@@ -51,7 +51,7 @@ In a more formal way, let $X$ be a configuration space, let $PX$ be the set of c
 \end{defn}
 
 \begin{rem}
-    $\tcomp(X)$ can also be defined in term of Schwartz genus\footnote{Let $p : E \ra B$ be a continuous map and $U \subseteq B$, the Schwartz genus of $p$ denoted $g(p)$, is the minimum cardinality among coverings of $B$ by open sets,over each of which $p$ has continuous section.}, that is $\tcomp(X)$ is the Schwartz genus of the patrh fibration $\pi : PX \ra X \times X$ \cite{farber2007symmetric}.
+    $\tcomp(X)$ can also be defined in term of Schwartz genus, that is $\tcomp(X)$ is the Schwartz genus of the patrh fibration $\pi : PX \ra X \times X$ \cite{farber2007symmetric}.
 
     It is obvious intuitively that the topological complexity $\tcomp(X)$ is a measure of discontinuity.
 
@@ -94,6 +94,34 @@ In a more formal way, let $X$ be a configuration space, let $PX$ be the set of c
     It is also obvious from above that $\tcomp(X) \le \cat(X \times X)$, and combined with the inequality $\cat(X \times X) \le 2 \cdot \cat(X) - 1$ in theorem \ref{james:2}. Combining these inequalities we have the desired result.
 \end{proof}
 
+\begin{thm}[Product Inequality, \cite{farber2003topological}]
+    For any path-connected metric space $X$ and $Y$,
+    \[
+        \tcomp(X \times Y) \le \tcomp(X) + \tcomp(Y) - 1
+    \]
+\end{thm}
+
+\begin{proof}
+    Let $\tcomp(X) = n, \tcomp(Y) = m$ and $U_1, \ldots, U_n$ be open cover of $X \times X$ with a continuous motion planning $s_i : U_i \ra PX$ for $i = 1, \ldots, n$. Let $f_i : X \times X \ra \RR,$ for $i = 1, \ldots, n$ be a partition of unity subordinate to the cover $\{U_i\}$. Similarly, let $V_1, \ldots,V_m$ be an open cover of $Y \times Y$ with a continuous motion planning $\sigma_j : V_j \ra PY$ for $j = 1, \ldots m$, let $g_j : Y \times Y \ra \RR$, where $j = 1, \ldots, m$ be a partition of unity subordinate to the cover $\{V_j\}$. For any pair of nonempty subsets $S \subset \{1, \ldots, n\}$ and $T \subset \{1, \ldots, m\}$, let
+    \[
+        W(S,T) \subset (X \times Y) \times (X \times Y)
+    \]
+    denote the set of all $4-$tuples $(A,B,C,D) \in (X \times Y) \times (X \times Y)$, such that for any $(i,j) \in S \times T$ and for any $(i', j') \notin S \times T$ holds
+    \[
+        f_i(A,C) \cdot g_j(B, D) > f_{i'}(A,C) \cdot g_{j'} (B, D)
+    \]
+    We can easily check that:
+    \begin{itemize}
+        \item[(a)] each set $W(S,T) \subset (X \times Y) \times (X \times Y)$ is open.
+        \item[(b)] $W(S,T)$ and $W(S', T')$ are disjoint if neither $S \times T \subset S' \times T'$, nor $S' \times T' \subset S \times T$.
+        \item[(c)] if $(i,j) \in S \times T$, then $W(S,T)$ is contained in $U_i \times V_j$; therfore there exists a continuous motion planning over each $W(S,T)$
+        \item[(d)]  the sets $W(S,T)$ (with all possible nonempty $S$ and $T$ ) form a cover of $(X \times Y) \times (X \times Y)$
+    \end{itemize}
+    We now prove the result in (d), suppose that $(A,B,C,D) \in (X \times Y) \times (X \times Y)$. Let $S$ be the set of all indices $i \in \{1, \ldots, n\}$, such that $f_i(A,C)$ equals the maximum of $f_k(A,C)$, where $k = 1, \ldots, n$. Similarly, let $T$ be the set of all $j \in \{1, \ldots, m\}$, such that $g_j(B,D)$ equals the maximum of $g_l(B,C)$, where $l = 1, \ldots, m$. Then clearly $(A,B,C,D)$ belongs to $W(S,T)$.
+
+    Let $W_k \subset (X \times Y) \times (X \times Y)$ be the union of all $W(S,T)$, where $\abs{S} + \abs{T} = k$ and $k = 2,3, \ldots, n+m$. The sets $W_2, \ldots, W_{n+m}$ form an open cover of $(X \times Y) \times (X \times Y)$. If $\abs{S} + \abs{T} = \abs{S'} + \abs{T'} = k$, then the corresponding sets $W(S,T)$ and $W(S', T')$ either coincide (if $S = S'$ and $T = T'$), or are disjoint. Using the result in (c) above there exists a continuous motion planningover each open set $W_k$, and this completes the proof.
+\end{proof}
+
 \begin{thm}[An upper bound for \tcomp(X), \cite{farber2003topological}]
     Let $X$ be any path-connected paracompact space, then
     \[
@@ -120,7 +148,7 @@ In a more formal way, let $X$ be a configuration space, let $PX$ be the set of c
     \end{align*}
 \end{proof}
 
-\begin{lem}
+\begin{lem}\label{zdcl:bound}
     $\disp \tcomp(X) \ge \zdcl(H^*(X, \KK))$.
 \end{lem}
 
@@ -137,11 +165,82 @@ In a more formal way, let $X$ be a configuration space, let $PX$ be the set of c
     \begin{equation}
         H^*(X, \KK) \otimes H^*(X, \KK) \simeq H^*(X \times X, \KK) \xrightarrow{\pi^*} H^*(PX, \KK) \xrightarrow[\simeq]{\alpha^*} H^*(X, \KK)
     \end{equation}
-    coincides with the cup-product homomorphism in (\ref{cup:product}). From definition, $\tcomp(X)$ is the Schwartz genus of the fibration $\pi: PX \ra X \times X$
+    coincides with the cup-product homomorphism in (\ref{cup:product}). From definition, $\tcomp(X)$ is the Schwartz genus of the fibration $\pi: PX \ra X \times X$, the proof is complete following from the cohomological lower bound for Schwarz genus as shown in theorem 4 of \cite{schwarz1961genus}.
 \end{proof}
+
+Since it is very essential to know the returning motion of a robot from its destination, knowing only the departing motion is not enough, to address this, \cite{farber2007symmetric} introduced the \emph{Symmetric motion planning and Symmetric Topoological complexity}, that is when the departing and returning motion of the robot are the same.
+
+However, that is still more restrictive since the goal is to give the robot total autonomy to determine both the departing and returning motion without having to be symmetric. In this vain, \cite{derfoufi2015loop} introduces the \emph{loop motion planning and the loop topological complexity}.
+
+\section{Symmetric Motion Planning}
+\begin{defn}[Symmetric Motion Planning, \cite{farber2007symmetric}]
+
+\end{defn}
+
+\section{Loop Motion Planning}
+% Let $LX$ 
+\begin{defn}[Loop Motion Planning Algorithm (LMPA), \cite{mamouni2022pure}]
+    A LMPA over $X$, is any continuous section $s: X \times X \lra LX$ of the loop bi-evaluation
+    \begin{align*}
+        ev^{\mathrm{LP}} : & LX \lra X \times X                                                 \\
+                         & \gamma \mapsto \left(\gamma(0), \gamma \left(\frac12\right) \right)
+    \end{align*}
+    where $LX := \{\gamma : X ^{S^1} \lra X \mid \gamma \text{ is continuous}\}$ (the free loop space) and $X^{S^1}$ is the set of all mappings from $S^1$ to $X$.
+\end{defn}
+
+\begin{thm}\cite{derfoufi2015loop}
+    If $X$ is a path-connected topological space, then LMPAs on $X$ exist if and only if $X$ is a contractible.
+\end{thm}
+
+\begin{proof}
+    The proof to this is similar to that of theorem (\ref{farber:thm:1}).
+\end{proof}
+
+In the spirit of \cite{farber2003topological}, \cite{derfoufi2015loop} introduces a new homotopy invariant called \textit{the loop toplogical complexity}. And it is defined as follows:
+
+\begin{defn}
+    The loop topological complexity of a topological space $X$, also denoted $\ltcomp(X)$ is the minimum among the normalized cardinalities of all
+    open coverings $\{U_i\}_{i = 1}^k$ of $X \times X$, over each of which $\pi^{LP}$ has a local continuous section $s_i : U_i \ra LX$. That is $\disp \pi^{LP} \circ s_i = 1_{U_i}$
+\end{defn}
 
 \section{Motion Planning for some Surfaces}
 
+\subsection{Motion Planning on Spheres}
+\begin{thm}
+    The topological complexity of motion planning on the $n-$dimensional sphere $\Sb^n$ is given by
+    \[
+        \tcomp(\Sb^n) = \begin{cases}
+            2, & \text{if $n$ is odd}  \\
+            3, & \text{if $n$ is even} \\
+        \end{cases}
+    \]
+\end{thm}
+
+\begin{proof}
+    Firstly we show that $\tcomp(\Sb^n) \le 2$ if $n$ is odd. To see this consider $U_1 \in \Sb^n \times \Sb^n$ to be the set of all pairs $(A,B)$ such that $A \neq -B$. Then there is a unique shortest arc of $\Sb^n$ connecting $A$ and $B$ and construct a continuous motion planning $s_1: U_1 \ra P\Sb^n$ by setting $s_1(A,B) \in P\Sb^n$ to be this shortest arc passed with a constant velocity. Define another open set $U_2 \subset \Sb^n \times \Sb^n$ by $U_2 = \{(A,B) : A \neq B\}$. A continuous motion planning over $U_2$ will be constructed in two steps. Firslty, move the initial point $A$ to the antipodal point $-B$ along the shortest arc as above. On the second step we will move the antipodal point; here we will use the assumption that
+    the dimension $n$ is odd. We may move $-B$ to $B$ along the spherical arc
+    \[
+        - \cos \pi t \cdot B + \sin \pi t \cdot v(B), \quad t \in [0,1]
+    \]
+    and this proves that $\tcomp(\Sb^n) \le 2$ for any odd $n$. Hence by theorem \ref{farber:thm:1} we have $\tcomp(\Sb^n) = 2$ for odd $n$.
+
+    Now, assumming that $n$ is even, we show that $\tcomp(\Sb^n) \le 3$. Define a continuous motion planning over a set $U_1 \subset \Sb^n \times \Sb^n$ as above. For $n$ even we may construct a continuous tangent vector field $v$ over $\Sb^n$, which vanishes at a single point $B_0 \in \Sb^n$ and is nonzero for any $B \in \Sb^n, B \neq B_0$. Also, we define a second set $U_2 = \{(A,B) : A \neq B \text{ and } B \neq B_0\} \subset \Sb^n \times \Sb^n$ and $s_2 : U_2 \ra P\Sb^n$ as above. It is obvious that $U_1 \cup U_2$ covers everything except the pair of points $(-B_0, B_0)$. Choose a point $C \in \Sb^n$, distinct from $B_0, -B_0$ and set $U_3 = \Sb^n \backslash C$.
+    %%TODO add the footnote about diffeomorphism ;)
+    Since $U_3$ is diffeomorphic\footnote{Two manifolds $A$ and $B$ are said to be diffeomorphic if there exists a bijective differentiable map $f: A \ra B$ such that the inverse $f^{-1} : B \ra A$ is also differentiable.} to $\RR^n$, then there exists a continuous motion planning over $U_3$. Thus we have that $\tcomp(\Sb^n) \le 3$. Combining the results in lemma \ref{zdcl:bound} and equation (\ref{zdcl:of:sphere}) we have $\tcomp(\Sb^n) \ge 3$ for $n$ even. This completes the proof.
+\end{proof}
+
+\subsection{Motion Planning in Projective Spaces }
+\begin{thm}
+    Let $X = \CC\PP^n$ be the $n-$dimensional complex projective space. Then $\tcomp(X) \ge 2n + 1$
+\end{thm}
+
+\begin{proof}
+    If $u \in H^2(X, \QQ)$ is a generator, then
+    \[
+        (1 \otimes u - u \otimes 1)^{2n} = (-1)^n \binom{2n}{n} u^n \otimes u^n \neq 0
+    \]
+    Thus, by theorem \ref{zdcl:bound} we have $\tcomp(X) \ge 2n + 1$.
+\end{proof}
 
 
 
