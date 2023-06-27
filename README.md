@@ -18,8 +18,8 @@ make clean
 > **Note**
 >
 > Please make sure you have `make` install on your system. if not you can run any of the following commands
->```
-sudo apt install make
+>```sh
+> sudo apt install make
 > ```
 > If you are using a Windows check [here](https://www.technewstoday.com/install-and-use-make-in-windows/) to see how to install it.
 
