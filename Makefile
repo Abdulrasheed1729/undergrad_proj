@@ -12,8 +12,8 @@ clean:
 	latexmk -output-directory=$(BUILDDIR) -c && rm -rf build/*
 
 ## For dev
-# run:
-# 	latexmk main.tex -bibtex -pvc -f
+beamer:
+	latexmk tex/beamer.tex -bibtex -pvc -f
 # clear:
 # 	latexmk main.tex -CA
 # bib-gen:

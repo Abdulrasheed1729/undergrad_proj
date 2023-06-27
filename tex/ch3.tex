@@ -172,18 +172,18 @@ Since it is very essential to know the returning motion of a robot from its dest
 
 However, that is still more restrictive since the goal is to give the robot total autonomy to determine both the departing and returning motion without having to be symmetric. In this vain, \cite{derfoufi2015loop} introduces the \emph{loop motion planning and the loop topological complexity}.
 
-\section{Symmetric Motion Planning}
-\begin{defn}[Symmetric Motion Planning, \cite{farber2007symmetric}]
+% \section{Symmetric Motion Planning}
+% \begin{defn}[Symmetric Motion Planning, \cite{farber2007symmetric}]
 
-\end{defn}
+% \end{defn}
 
 \section{Loop Motion Planning}
 % Let $LX$ 
 \begin{defn}[Loop Motion Planning Algorithm (LMPA), \cite{mamouni2022pure}]
     A LMPA over $X$, is any continuous section $s: X \times X \lra LX$ of the loop bi-evaluation
     \begin{align*}
-        ev^{\mathrm{LP}} : & LX \lra X \times X                                                 \\
-                         & \gamma \mapsto \left(\gamma(0), \gamma \left(\frac12\right) \right)
+        ev^{\mathrm{LP}} : & LX \lra X \times X                                                  \\
+                           & \gamma \mapsto \left(\gamma(0), \gamma \left(\frac12\right) \right)
     \end{align*}
     where $LX := \{\gamma : X ^{S^1} \lra X \mid \gamma \text{ is continuous}\}$ (the free loop space) and $X^{S^1}$ is the set of all mappings from $S^1$ to $X$.
 \end{defn}
@@ -206,10 +206,10 @@ In the spirit of \cite{farber2003topological}, \cite{derfoufi2015loop} introduce
 It is obvious by definition and with the result from theorem \ref{homtopy:invariance} that $\ltcomp(X)$ is an homotopy invariance. And $\tcomp(X)$ and $\ltcomp(X)$ coincides when $X$ is a path connected space as shown by \cite{derfoufi2015loop}.
 
 
-\section{Motion Planning for some Surfaces}
+\section{Motion Planning of some Surfaces}
 
 \subsection{Motion Planning on Spheres}
-\begin{thm}
+\begin{thm}\label{tcomp-of-sphere}
     The topological complexity of motion planning on the $n-$dimensional sphere $\Sb^n$ is given by
     \[
         \tcomp(\Sb^n) = \begin{cases}
@@ -242,9 +242,62 @@ It is obvious by definition and with the result from theorem \ref{homtopy:invari
     \[
         (1 \otimes u - u \otimes 1)^{2n} = (-1)^n \binom{2n}{n} u^n \otimes u^n \neq 0
     \]
-    Thus, by theorem \ref{zdcl:bound} we have $\tcomp(X) \ge 2n + 1$.
+    From above and by theorem \ref{zdcl:bound} it follows that $\tcomp(X) \ge 2n + 1$.
 \end{proof}
 
 
+\subsection{Motion Planning of a Robot Arm}
+Consider a robot arm consisting of $n$ bars $L_1, \ldots, L_n$, such that $L_i$ and $L_{i+1}$ are connected by flexible joins. We assume that the initial point of $L_1$ is fixed. In the planar case, a configuration of the arm is determined by $n$ angles $\alpha_1, \ldots, \alpha_n$, where $\alpha_i$ is the angle between $L_i$ and the $x$-axis. Thus, in the planar case, the configuration space of the robot arm (when no obstacles are present) is the $n$-dimensional torus.
+\[
+    T^n = \Sb^1 \times \Sb^1 \times \cdots \times \Sb^1
+\]
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{images/planar-robot-arm.png}
+    \caption{Planar Robot Arm}
+\end{figure}
+
+Similarly, the configuration space of a robot arm in the $3$-dimensional space $\RR^3$ is the Cartesian product of $n$copies of the two-dimensional sphere $\Sb^2$, that is
+\[
+    \Sb^2 \times \Sb^2 \times \cdots \times \Sb^2
+\]
+
+\begin{thm}\cite{farber2003topological}
+    Let $X  = \Sb^m \times \ldots \times \Sb^m$ be a cartesian product of $n$ copies of the $m-$-dimensional sphere $\Sb^m$. Then
+    \[
+        \tcomp(X) = \begin{cases}
+            n + 1  & \text{if $m$ is odd}  \\
+            2n + 1 & \text{if $m$ is even}
+        \end{cases}
+    \]
+\end{thm}
+
+\begin{proof}
+    To show this result we firstly show that the LHS is less or equal to the RHS and also show otherwise too. To show the first inequality we use the method of induction. For the base case $n = 1$, the result holds by considering the result in theorem  (\ref{tcomp-of-sphere}).
+
+    Now suppose the inequality is true for all $n = k$, then we have the following 
+    \[
+        \tcomp(X) = \begin{cases}
+            k + 1  & \text{if $m$ is odd}  \\
+            2k + 1 & \text{if $m$ is even}
+        \end{cases}
+    \]
+    Let $X_k$ be the cartesian product of $k$ copies of the $m$-dimensional sphere, then by the product inequality property of $\tcomp(X)$ we have
+    \[
+        \tcomp(X_k \times \Sb^m) \le \tcomp(X_k) + \tcomp(\Sb^m) - 1
+    \]
+    then we have for odd $m,\, \tcomp(X_k \times \Sb^m) \le k +2$ and for even $m,\, \tcomp(X_k \times \Sb^m) \le 2k +3$, which shows our inductive step. Hence, showing the first inequality.
+
+    Conversely, for the second inequality, let $a_i \in H^m(X, \QQ)$ denote the cohomology class which is the pull-back of the fundamental class of $\Sb^m$ under the projection $X \ra \Sb^m$ onto the $i$-th factor; for $i = 1, 2, \ldots, n$. We notice that 
+    \[
+        \prod_{i=1}^{n} (1 \otimes a_i - a_i \otimes 1) \neq 0 \in H^*(X \times X, \QQ)  
+    \]
+    This shows that $\zdcl(X)$ is at least $n$. If $m$ is even then 
+    \[
+        \prod_{i=1}^{n} (1 \otimes a_i - a_i \otimes 1)^2 \neq 0 \in H^*(X \times X, \QQ)  
+    \]
+    Hence for $m$ even, $\zdcl(X)$ is at least $2n$, applying lemma \ref{zdcl:bound} completes the proof.
+
+\end{proof}
 

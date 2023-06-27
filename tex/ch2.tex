@@ -1,8 +1,7 @@
-\chapter{Basic Definitions and Theorems}
+\chapter{Basic Definitions and Theorems}\label{ch:basic-definitions-and-theorems}
 
 
-
-\section{Path-connectedness and Homotopy}
+\section{Path-connectedness and Homotopy}\label{sec:path-connectedness-and-homotopy}
 
 \begin{defn}[Path]
     Given any points $x,y$ in a topological space $X$, a path in $X$ from $x$ to $y$ is a continuous function $\alpha : [0,1] \lra X$ with $\alpha(0) = x$ and $\alpha(1) = y$, since we can rescale it to $\beta(t) = \alpha((b-a)t + a)$ for $t \in [0,1]$
@@ -12,14 +11,16 @@
 \end{defn}
 
 \begin{defn}[Homotopy]
-    Let $X$ and $Y$ be two topological spaces, let $f,g : X \lra Y$ be maps and $I = [0,1]$. Then the \textit{homotopy} from $f$ to $g$ is the map $F: X \times I \lra Y$ such that $F(x,0) = f(x)$ and $F(x,1) = g(x)$ for all points $x \in X$.
+    Let $X$ and $Y$ be two topological spaces, let $f,g : X \lra Y$ be maps and $I = [0,1]$.
+    Then the \textit{homotopy} from $f$ to $g$ is the map $F: X \times I \lra Y$ such that $F(x,0) = f(x)$ and $F(x,1) = g(x)$ for all points $x \in X$.
 \end{defn}
 
 \begin{notn}
     If $F$ is the homotopy from $f$ to $g$ we write $\disp f \htp{F} g.$
 \end{notn}
 
-If in addition, $f$ and $g$ agree on some subset $A$ of $X$, we may wish to deform $f$ to $g$ without altering the values of $f$ on $A$. IN this particular case, we define an homotopy $F$ from $f$ to $g$ with the additional property that
+If in addition, $f$ and $g$ agree on some subset $A$ of $X$, we may wish to deform $f$ to $g$ without altering the values of $f$ on $A$.
+In this particular case, we define a homotopy $F$ from $f$ to $g$ with the additional property that
 \[
     F(a,t) = f(a) \quad \text{for all $a \in A$, and all $t \in I = [0,1]$}
 \]
@@ -49,7 +50,9 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
     The relation of homotopy is an equivalence relation on the set of all maps from $X$ to $Y$.
 \end{lem}
 \begin{proof}
-    Let $f,g,h$ be maps from $X$ to $Y$. For any $f$ we have $f \htp{F} f$ where $F(x,t) = f(x)$, so the relation is reflexive. Also if $f \htp{F} g$ then $g \htp{G} f$ where $G(x,t) = F(x, 1-t)$, giving the symmetric property of the relation.
+    Let $f,g,h$ be maps from $X$ to $Y$.
+    For any $f$ we have $f \htp{F} f$ where $F(x,t) = f(x)$, so the relation is reflexive.
+    Also if $f \htp{F} g$ then $g \htp{G} f$ where $G(x,t) = F(x, 1-t)$, giving the symmetric property of the relation.
     \\
     Finally, if $f \htp{F} g$ and $g \htp{G} h$, then $f \htp{H} h$ where $H$ is defined by
     \begin{equation*}
@@ -105,7 +108,7 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
           \begin{figure}[H]
               \centering
               \includegraphics[scale=1]{images/mug-and-donut-homotopy-equivalence}
-              \caption{Deformation of a coffee mug to donut showing the equivalence of both subspace of $\RR^3$}
+              \caption{Deformation of a coffee mug to donut showing the equivalence of both subspace of $\RR^3$}\label{fig:figure}
           \end{figure}
     \item Any convex subset of a Euclidean space is homotopic to a point.
 \end{enumerate}
@@ -230,14 +233,14 @@ Here $\abs{v_1}$ and $\abs{u_2}$ denote the degrees of cohomology classes $v_1$ 
 \end{defn}
 As an example, let $X = \Sb^n$ and $u \in H^n(\Sb^n, \KK)$ be the fundamental class, and $1 \in H^0(\Sb^n, \KK)$ be the unit. Then $a = 1 \otimes u - u \otimes 1 \in H^*(\Sb^n, \KK) \otimes H^*(\Sb^n, \KK)$ is a zero-divisor, since applying the homomorphism in (\ref{cup:product}) to $a$ we ontain $1 \cdot u - u\cdot 1 = 0$. Another zero-divisor is $b = u \otimes \otimes u$, since $b^2 = 0$. Computing $a^2 = a \cdot a$, by means of equation (\ref{eqn:6:farber}) we find
 \[
-    a^2 = \left((-1^{n-1}) - 1\right) \cdot u \otimes u  
+    a^2 = \left((-1^{n-1}) - 1\right) \cdot u \otimes u
 \]
 Hence $a = - 2b$ for $n$ even and $a^2 = 0$ for $n$ odd; the product $ab$ vanishes for $n$. Thus in conclusion we have the following:
 \begin{equation}\label{zdcl:of:sphere}
     \zdcl(H^*(\Sb^n, \KK)) = \begin{cases}
-        1 & \text{if $n$ is odd} \\
+        1 & \text{if $n$ is odd}  \\
         2 & \text{if $n$ is even}
-    \end{cases}  
+    \end{cases}
 \end{equation}
 
 
@@ -366,7 +369,18 @@ More generally we give the following definition:
 \end{rem}
 
 
-\section{Configuration Space}
+\section{Configuration Space}\label{sec:configuration-space}
 
 The configuration space of a robot is a topological space, usually denoted $\cal{C}$ whose points parameterize the possible configurations of the robot.
+
+% \subsection{Obstacle Region for a Rigid Body}\label{subsec:obstacle-region-for-a-rigid-body}
+% Suppose that the world, $\cal{W} = \RR^2$ or $\cal{W} = \RR^3$, contains an obstacle region
+
+\subsection{Degree of Freedom}
+
+Degrees of freedom (DOF) is ”a term that describes a robot's freedom of motion in three dimensional space”. Degree of freedom for a robot is defined as “the number of independent movements performed by the robot wrist in three dimensional space, relative to the robot's base”. It refers to the ability of the robot arm to move forward and backward, up and down and to the left and to the right. For each degree of freedom, a joint is required. A robot requires six degrees of freedom to be completely versatile. The number of degrees of freedom defines the robot's configuration. Many robotic applications require movement in all the three directions; i.e. $X, Y$ and $Z$ if we are considering the space. These tasks require three joints, or three degrees of freedom.
+
+It is very intuitive to say that the degree of freedom (dof) of a robot coincides with the dimension of its configuration space.
+
+
 

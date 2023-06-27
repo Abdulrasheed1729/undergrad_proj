@@ -1,16 +1,47 @@
 \usepackage{amsmath, amsfonts, amssymb, amsthm}
-\usepackage[
-	lmargin=3.7cm,%
-	rmargin=2.5cm,%
-	bmargin=2.5cm,%
-	tmargin=2.5cm %
-]{geometry}
+% \usepackage[
+% 	lmargin=3.7cm,%
+% 	rmargin=2.5cm,%
+% 	bmargin=2.5cm,%
+% 	tmargin=2.5cm %
+% ]{geometry}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{apalike}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
 \usepackage{url}
+\usepackage{algorithm2e}
+\usepackage{algorithmic}
+\usepackage{listings}
+\usepackage{color}
+% \usepackage{sectsty}
+
+
+% \chapterfont{\centering}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=C++,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
 
 %%%% ------ Links ------------
 \hypersetup{
@@ -26,19 +57,19 @@
 
 
 %%%% ---------- Asymptote Stuffs ----------------
-\usepackage{asymptote}
-\numberwithin{asy}{chapter}
-\renewcommand{\theasy}{\thechapter\Alph{asy}}
-\begin{asydef}
-	// import extras;
-	size(6cm);
-	usepackage("amsmath");
-	usepackage("amssymb");
-	defaultpen(fontsize(11pt));
-	settings.tex="latex";
-	settings.outformat="pdf";
-\end{asydef}
-\def\asydir{asy}
+% \usepackage{asymptote}
+% % \numberwithin{asy}{chapter}
+% \renewcommand{\theasy}{\thechapter\Alph{asy}}
+% \begin{asydef}
+% 	// import extras;
+% 	size(6cm);
+% 	usepackage("amsmath");
+% 	usepackage("amssymb");
+% 	defaultpen(fontsize(11pt));
+% 	settings.tex="latex";
+% 	settings.outformat="pdf";
+% \end{asydef}
+% \def\asydir{asy}
 
 % \graphicspath{ {./images} }
 
@@ -83,5 +114,6 @@
 
 
 
-\title{Topology of Motion Planning Algorithms}
-\author{Abdulrasheed Fawole}
+\title{Topology of Robot Motion Planning Algorithms}
+\author{\textbf{\textsc{Fawole Abdulrasheed Bolaji}} \\ Matric. No.: 207256 \\[.35cm] \textbf{Supervisor: Professor D.O.A Ajayi} \\ }
+\institute{University of Ibadan}
