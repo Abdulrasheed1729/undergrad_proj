@@ -108,7 +108,7 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
           \begin{figure}[H]
               \centering
               \includegraphics[scale=1]{images/mug-and-donut-homotopy-equivalence}
-              \caption{Deformation of a coffee mug to donut showing the equivalence of both subspace of $\RR^3$}\label{fig:figure}
+              \caption{Deformation of a coffee mug to donut showing the equivalence of both subspace of $\RR^3$. (Image Source: Wikipedia)}\label{fig:figure}
           \end{figure}
     \item Any convex subset of a Euclidean space is homotopic to a point.
 \end{enumerate}
@@ -118,7 +118,8 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
 \end{lem}
 
 \begin{proof}
-    Reflexive and symmetric properties are obvious. To show transitivity consider the maps
+    Reflexive and symmetric properties are obvious.
+        To show transitivity consider the maps
     \begin{center}
         \begin{tikzcd}
             X \arrow[r, bend left=30, "f"]
@@ -140,7 +141,7 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
     \[
         u \circ f \circ g \circ v \simeq u \circ 1_Y \circ v = u \circ v \simeq 1_Z
     \]
-    Therefore the maps
+    Therefore, the maps
     \begin{center}
         \begin{tikzcd}
             Y \arrow[r, bend left=30, "u \circ f"]
@@ -162,8 +163,10 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
 \begin{defn}[Paracompact space, \cite{enwiki:1156064780}]
     Let $X$ be a topological space,
     \begin{enumerate}
-        \item A \textit{refinement} of a cover of a space $X$ is a new cover of the same space such that every set in the new cover is a subset of some set in the old cover. That is if $V = \{V_\beta : \beta \in B\}$ are $U = \{U_\alpha : \alpha \in A\}$ are covers for $X$, we said that $V$ is a refinement of $U$ if and only if, for every $V_\beta \in V,$ there exists some $U_\alpha \in U$ such that $V_\beta \subseteq \in U_\alpha$.
-        \item An open cover of a space $X$ is \textit{locally finite} if every point of the space has a neighborhood that intersects only finitely many sets in the cover. That is $U = \{U_\alpha : \alpha \in A\}$ is locally finite if and only if, for any $x \in X$, there exists some neighbourhood $V$ of $x$ such that the set $\{\alpha \in A : U_\alpha \cap V \neq \emptyset\}$ is finite.
+        \item A \textit{refinement} of a cover of a space $X$ is a new cover of the same space such that every set in the new cover is a subset of some set in the old cover. 
+        That is if $V = \{V_\beta : \beta \in B\}$ and $U = \{U_\alpha : \alpha \in A\}$ covers for $X$, we said that $V$ is a refinement of $U$ if and only if, for every $V_\beta \in V,$ there exists some $U_\alpha \in U$ such that $V_\beta \subseteq \in U_\alpha$.
+        \item An open cover of a space $X$ is \textit{locally finite} if every point of the space has a neighborhood that intersects only finitely many sets in the cover. 
+        That is $U = \{U_\alpha : \alpha \in A\}$ is locally finite if and only if, for any $x \in X$, there exists some neighbourhood $V$ of $x$ such that the set $\{\alpha \in A : U_\alpha \cap V \neq \emptyset\}$ is finite.
         \item $X$ is \textit{paracompact} if every open cover has a locally finite open refinement.
     \end{enumerate}
 \end{defn}
@@ -173,11 +176,11 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
 \end{defn}
 
 \begin{defn}[Lusternik-Schnirelmann category, \cite{james1978category}]
-    Let $X$ be a topological space, the Lusternik-Schnirelmann category of $X$, denoted $\cat(X)$ is the smallest integer $k$ such that $X$ may be covered by $k$ open subsets
+    Let $X$ be a topological space, the Lyusternik-Schnirelmann category of $X$, denoted $\cat(X)$ is the smallest integer $k$ such that $X$ may be covered by $k$ open subsets
     \[
         V_1 \cup V_2 \cup \ldots \cup V_k = X
     \]
-    with each inclusions $V_i \lra X$ null-homotopic.
+    with each inclusion $V_i \lra X$ null-homotopic.
 \end{defn}
 
 \begin{prop}\cite{james1978category}\label{james:1}
@@ -189,17 +192,26 @@ when such homotopy exists we say that $f$ is homotopic to $g$ relative to $A$.
 
 \begin{proof}
     Let $\{U_i\}_{i \in J}$ be an open covering of $X$ subordinated to the
-    partition of unity $\{\pi_i\}_{i\in J}$. For each $x \in X$ let $S(x)$ be the finite set of $j$ such that $\pi_j(x) > 0$. For each finite subset $S \subset J$ let $W(S)$ be the open subset of all $x \in X$ such that $u_i(x) < u_j(x)$ for all $i \notin S$ and $j \in S$. If $S$ and $S'$ are two distinct subsets of $J$ with the same number of elements then $W(S)$ and $W(S')$ are disjoint.
+    partition of unity $\{\pi_i\}_{i\in J}$.
+    For each $x \in X$ let $S(x)$ be the finite set of $j$ such that $\pi_j(x) > 0$. 
+    For each finite subset $S \subset J$ let $W(S)$ be the open subset of all $x \in X$ such that $u_i(x) < u_j(x)$ for all $i \notin S$ and $j \in S$. 
+    If $S$ and $S'$ are two distinct subsets of $J$ with the same number of elements then $W(S)$ and $W(S')$ are disjoint.
 
-    Now define $W_k (k = 1,2, \ldots)$ to be the union of all the sets $W(S(b))$ such that $S(b)$ has $k$ elements. Each of these sets $W(S(b))$ is open and is contained in the sets $U_j$ of the original covering for all $j \in S(b)$. Hence if $\{U_j\}$ is categorical then so is $\{W_k\}$, since $X$ is path-connected. Also the dimension of the nerve of $\{W_k\}$ is less or equal to $n + 1$, where $n = |J|$, hence we have the desired result.
+    Now define $W_k (k = 1,2, \ldots)$ to be the union of all the sets $W(S(b))$ such that $S(b)$ has $k$ elements. 
+    Each of these sets $W(S(b))$ is open and is contained in the sets $U_j$ of the original covering for all $j \in S(b)$. 
+    Hence if $\{U_j\}$ is categorical then so is $\{W_k\}$, since $X$ is path-connected. 
+    Also the dimension of the nerve of $\{W_k\}$ is less or equal to $n + 1$, where $n = |J|$, hence we have the desired result.
 \end{proof}
 
 \begin{prop}\cite{james1978category}\label{james:2}
-    Let $X$ be a path-connected paracompact space such that $\cat(X) \le n$. Then $X$ admits a categorical sequence of length $n$.
+    Let $X$ be a path-connected paracompact space such that $\cat(X) \le n$.
+ Then $X$ admits a categorical sequence of length $n$.
 \end{prop}
 
 \begin{proof}
-    Choose an open categorical covering $A_1, \ldots, A_n$ of $X$ and a partition of unity subordinated to this covering. We construct an open covering $U_1, \ldots, U_n$ of $X$ such that each member $U_i (i = 1, \ldots, n)$ is the union of a finite number of disjoint open sets each contained in a member of the original covering. Since $X$ is path-connected, then the new covering is categorical, and so the sequence $V_1 \subset \ldots \subset V_n = X$ is categorical, where $V_i$ is the union of the sets $W_j$ for $j > n-i$.
+    Choose an open categorical covering $A_1, \ldots, A_n$ of $X$ and a partition of unity subordinated to this covering. 
+    We construct an open covering $U_1, \ldots, U_n$ of $X$ such that each member $U_i (i = 1, \ldots, n)$ is the union of a finite number of disjoint open sets each contained in a member of the original covering. 
+    Since $X$ is path-connected, then the new covering is categorical, and so the sequence $V_1 \subset \ldots \subset V_n = X$ is categorical, where $V_i$ is the union of the sets $W_j$ for $j > n-i$.
 \end{proof}
 
 \begin{prop}\cite{james1978category}\label{james:3}
@@ -229,13 +241,14 @@ given by the cup-product and the tensor product $H^*(X, \KK) \otimes H^*(X, \KK)
 Here $\abs{v_1}$ and $\abs{u_2}$ denote the degrees of cohomology classes $v_1$ and $u_2$ correspondingly, and the cup-product in equaion (\ref{cup:product}) is an algebra homomorphism.
 
 \begin{defn}[Zero-Divisors-Cup-Length, \cite{farber2003topological}]
-    The kernel of the homomorphism (i.e the definition in equation \ref{cup:product}) will be called the ideal of zero-divisors of $H^*(X, \KK)$. The zero-divisors-cup-length, denoted $\zdcl$ of $H^*(X, \KK)$ is the length of the longest nontrivial product in the ideals of zero-divisors of $H^*(X, \KK)$.
+    The kernel of the homomorphism (i.e. the definition in equation \ref{cup:product}) will be called the ideal of zero-divisors of $H^*(X, \KK)$.
+    The zero-divisors-cup-length, denoted $\zdcl$ of $H^*(X, \KK)$ is the length of the longest nontrivial product in the ideals of zero-divisors of $H^*(X, \KK)$.
 \end{defn}
 As an example, let $X = \Sb^n$ and $u \in H^n(\Sb^n, \KK)$ be the fundamental class, and $1 \in H^0(\Sb^n, \KK)$ be the unit. Then $a = 1 \otimes u - u \otimes 1 \in H^*(\Sb^n, \KK) \otimes H^*(\Sb^n, \KK)$ is a zero-divisor, since applying the homomorphism in (\ref{cup:product}) to $a$ we ontain $1 \cdot u - u\cdot 1 = 0$. Another zero-divisor is $b = u \otimes \otimes u$, since $b^2 = 0$. Computing $a^2 = a \cdot a$, by means of equation (\ref{eqn:6:farber}) we find
 \[
     a^2 = \left((-1^{n-1}) - 1\right) \cdot u \otimes u
 \]
-Hence $a = - 2b$ for $n$ even and $a^2 = 0$ for $n$ odd; the product $ab$ vanishes for $n$. Thus in conclusion we have the following:
+Hence, $a = - 2b$ for $n$ even and $a^2 = 0$ for $n$ odd; the product $ab$ vanishes for $n$. Thus in conclusion we have the following:
 \begin{equation}\label{zdcl:of:sphere}
     \zdcl(H^*(\Sb^n, \KK)) = \begin{cases}
         1 & \text{if $n$ is odd}  \\
@@ -261,7 +274,7 @@ Before we give the definition of what a configuration space is we give some expo
     \end{figure}
 \end{defn}
 
-From the above definition, it is obvious that $m \ge n$ and it is impossible for a manifold to include its boundary points since they are not contained in open sets.
+From the above definition, it is obvious that, $m \ge n$ and it is impossible for a manifold to include its boundary points since they are not contained in open sets.
 \linebreak
 A manifold with boundary can be defined requiring that the neighborhood of each boundary point of $M$ is homeomorphic to a half-space of dimension $n$ and the interior points must be homeomorphic to $\RR^n$.
 
@@ -285,12 +298,12 @@ Now, we give presentation on the construction of some basic manifolds that frequ
           \begin{figure}[H]
               \centering
               \includegraphics[scale=.7]{images/2d-manifolds}
-              \caption[2D manifolds]{Some 2D manifolds that can be obtained by identifying pairs of points along the boundary of a square region\cite{lavalle2006planning}}
+              \caption[2D manifolds]{Some 2D manifolds that can be obtained by identifying pairs of points along the boundary of a square region\cite{lavalle2006planning}}\label{fig:figure2}
           \end{figure}
 \end{enumerate}
 
 
-\section{Fundamental Group}
+\section{Fundamental Group}\label{sec:fundamental-group}
 \begin{defn}[Loop]
     Let $X$ be a topological space and $\gamma : X \lra [0,1]$ be a continuous path in $X$. We call $\gamma$ a \textit{loop} if $\gamma(0) = \gamma(1)$.
 \end{defn}
@@ -299,9 +312,11 @@ Now, we give presentation on the construction of some basic manifolds that frequ
     Let $X$ be a topological space a loop at a based at $x_0$ is the continuous path $\disp \gamma : [0,1] \lra X$ such that the starting point $\gamma(0)$ and the end point $\gamma(1)$ are both equal to $x_0$
 \end{defn}
 
-Now, let $\alpha$ be a loop and let some $x_b$ be designated as a base point. For some arbitrary but fixed basse point, $x_b$, consider the set of all loops such that $\alpha(0) = \alpha(1) = x_b$. This can be made into a group by defining the following opeartion.
+Now, let $\alpha$ be a loop and let some $x_b$ be designated as a base point. For some arbitrary but fixed basse point, $x_b$, consider the set of all loops such that $\alpha(0) = \alpha(1) = x_b$.
+This can be made into a group by defining the following opeartion.
 
-Let $\tau_1 : [0,1] \ra X$ and $\tau_2 : [0,1] \ra X$ be two loop paths with the same base point. We define their product as $\tau = \tau_1 \cdot \tau_2$ and is defined as
+Let $\tau_1 : [0,1] \ra X$ and $\tau_2 : [0,1] \ra X$ be two loop paths with the same base point.
+We define their product as $\tau = \tau_1 \cdot \tau_2$ and is defined as
 \begin{equation}\label{eqn:fgbo}
     \tau(t) = (\tau_1 \cdot \tau_2)(t) = \begin{cases}
         \tau_1(2t)     & 0 \le t < \frac12   \\
@@ -309,9 +324,13 @@ Let $\tau_1 : [0,1] \ra X$ and $\tau_2 : [0,1] \ra X$ be two loop paths with the
     \end{cases}
 \end{equation}
 
-This results in a continuous loop path because $\tau_1$ terminates at $x_b$, and $\tau_2$ begins at $x_b$. That is the two paths are concatenated end to end.
+This results in a continuous loop path because $\tau_1$ terminates at $x_b$, and $\tau_2$ begins at $x_b$.
+That is the two paths are concatenated end to end.
 
-Suppose now that the equivalence relation induced by homotopy is applied to the set of all loop paths through a fixed point, $xb$ . It will no longer be important which particular path was chosen from a class; any representative may be used. The equivalence relation also applies when the set of loops is interpreted as a group. The group operation actually occurs over the set of equivalences of paths.
+Suppose now that the equivalence relation induced by homotopy is applied to the set of all loop paths through a fixed point, $xb$ .
+It will no longer be important which particular path was chosen from a class; any representative may be used.
+The equivalence relation also applies when the set of loops is interpreted as a group.
+The group operation actually occurs over the set of equivalences of paths.
 
 The quotient set of the set of loops illustrated above and the equivalence class of homotopy form a group with respect to the binary operation $\cdot$ defined in (\ref{eqn:fgbo}) above and its construction is illustrated below.
 
@@ -325,7 +344,10 @@ which shows that the quotient set of loops with base point $x_b$ with respect to
 \begin{enumerate}
     \item \textbf{Simply connected space}: Suppose that a topological $X$ is simply connected. In this case, all loop paths from a base point $x_b$  are homotopic, resulting in one equivalence class. The result is $\pi_1(X) = 1_G$, which is the group that consists of only the identity element\dots
 
-    \item \textbf{The Fundamental group of a Circle}: Suppose $X = \Sb^1$. In this case, there is an equvalence class of paths for each $i \in \ZZ$, if $i > 0$, then it means  that the path winds $i$ times around $\Sb^1$ in the counterclockwise direction and then returns to $x_b$. If $i < 0$, then the path winds around $i$ times in the clockwise direction. If $i = 0$, then the path is equivalent to the one that remains at $x_b$. The fundamental group is $\ZZ$, with respect to the operation of addition. If $\tau_1$ travels $i_1$ times counterclockwise, and $\tau_2$ travels $i_2$ times counterclockwise, then $\tau = \tau_1 \cdot \tau_2$ belongs to the class of loops that travel around $i_1 + i_2$ times counterclockwise. Now to consider additive inverses, suppose a path travels ten times around $\Sb^1$, and it is combined with a path that travels ten times in the opposite direction, the result is homotopic to a path that remains at $x_b$. Thus, we have that $\pi_1(\Sb^2) = \ZZ$.
+    \item \textbf{The Fundamental group of a Circle}: Suppose $X = \Sb^1$.
+    In this case, there is an equvalence class of paths for each $i \in \ZZ$, if $i > 0$, then it means  that the path winds $i$ times around $\Sb^1$ in the counterclockwise direction and then returns to $x_b$. If $i < 0$, then the path winds around $i$ times in the clockwise direction.
+    If $i = 0$, then the path is equivalent to the one that remains at $x_b$. The fundamental group is $\ZZ$, with respect to the operation of addition. If $\tau_1$ travels $i_1$ times counterclockwise, and $\tau_2$ travels $i_2$ times counterclockwise, then $\tau = \tau_1 \cdot \tau_2$ belongs to the class of loops that travel around $i_1 + i_2$ times counterclockwise.
+    Now to consider additive inverses, suppose a path travels ten times around $\Sb^1$, and it is combined with a path that travels ten times in the opposite direction, the result is homotopic to a path that remains at $x_b$. Thus, we have that $\pi_1(\Sb^2) = \ZZ$.
     \item \textbf{The fundamental group of Torus, $\TT$:} For the torus, $\pi_1(\TT^n) = \ZZ^n$, in which the $i$th component of $\TT^n$. The fundamental group $\ZZ^n$ is obtained by starting with a simply connected subset of the plane  and drilling out $n$ disjoint, bounded holes.
           \begin{figure}[H]
               \begin{center}
@@ -347,7 +369,7 @@ The table below gives a summary of some space and the fundaental groups.
         $\Sb^n, n \ge 2$         & Trivial                   \\
         Torus ($\TT^n$)          & $\ZZ^n$                   \\
         Klein bottle             & $\{a, b \mid a^2 = b^2\}$
-    \end{tabular}
+    \end{tabular}\label{tab:table}
 \end{table}
 
 More generally we give the following definition:
@@ -376,9 +398,14 @@ The configuration space of a robot is a topological space, usually denoted $\cal
 % \subsection{Obstacle Region for a Rigid Body}\label{subsec:obstacle-region-for-a-rigid-body}
 % Suppose that the world, $\cal{W} = \RR^2$ or $\cal{W} = \RR^3$, contains an obstacle region
 
-\subsection{Degree of Freedom}
+\subsection{Degree of Freedom}\label{subsec:degree-of-freedom2}
 
-Degrees of freedom (DOF) is ”a term that describes a robot's freedom of motion in three dimensional space”. Degree of freedom for a robot is defined as “the number of independent movements performed by the robot wrist in three dimensional space, relative to the robot's base”. It refers to the ability of the robot arm to move forward and backward, up and down and to the left and to the right. For each degree of freedom, a joint is required. A robot requires six degrees of freedom to be completely versatile. The number of degrees of freedom defines the robot's configuration. Many robotic applications require movement in all the three directions; i.e. $X, Y$ and $Z$ if we are considering the space. These tasks require three joints, or three degrees of freedom.
+Degrees of freedom (DOF) is ”a term that describes a robot's freedom of motion in three-dimensional space”.
+Degree of freedom for a robot is defined as “the number of independent movements performed by the robot wrist in three-dimensional space, relative to the robot's base”.
+It refers to the ability of the robot arm to move forward and backward, up and down and to the left and to the right. For each degree of freedom, a joint is required.
+A robot requires six degrees of freedom to be completely versatile.
+The number of degrees of freedom defines the robot's configuration. Many robotic applications require movement in all the three directions; i.e. $X, Y$ and $Z$ if we are considering the space.
+These tasks require three joints, or three degrees of freedom.
 
 It is very intuitive to say that the degree of freedom (dof) of a robot coincides with the dimension of its configuration space.
 

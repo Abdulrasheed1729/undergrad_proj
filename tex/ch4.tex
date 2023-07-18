@@ -1,29 +1,49 @@
 \chapter{Simulation of The RRT Motion Planning Algorithm}
 
 \section{Introduction}
-Simulation plays a crucial role in understanding and analyzing the behavior of motion planning algorithms, enabling us to gain valuable insights into their mathematical foundations, performance characteristics, and practical implications. Motion planning is a fundamental problem in robotics and autonomous systems, involving the generation of feasible paths or trajectories for a robot to navigate through its environment. Through simulations, we can explore and evaluate the effectiveness of various motion planning algorithms, studying their mathematical properties and their ability to address complex real-world scenarios.
+Simulation plays a crucial role in understanding and analyzing the behavior of motion planning algorithms, enabling us to gain valuable insights into their mathematical foundations, performance characteristics, and practical implications.
+Motion planning is a fundamental problem in robotics and autonomous systems, involving the generation of feasible paths or trajectories for a robot to navigate through its environment.
+Through simulations, we can explore and evaluate the effectiveness of various motion planning algorithms, studying their mathematical properties and their ability to address complex real-world scenarios.
 
-Mathematical simulations of motion planning algorithms offer a controlled environment for studying their behavior, performance, and efficiency. By mathematically modeling the problem space, defining the constraints and objectives, and incorporating appropriate metrics, we can analyze the algorithms' performance quantitatively. Simulation allows us to assess factors such as computational complexity, path optimality, convergence properties, and resource utilization, providing a comprehensive understanding of the algorithms' capabilities.
+Mathematical simulations of motion planning algorithms offer a controlled environment for studying their behavior, performance, and efficiency. By mathematically modeling the problem space, defining the constraints and objectives, and incorporating appropriate metrics, we can analyze the algorithms' performance quantitatively.
+Simulation allows us to assess factors such as computational complexity, path optimality, convergence properties, and resource utilization, providing a comprehensive understanding of the algorithms' capabilities.
 
-Simulating motion planning algorithms encompasses a range of techniques and methodologies, depending on the specific algorithm being studied. Some popular algorithms include Rapidly-exploring Random Trees (RRT), Probabilistic Roadmaps (PRM), A*, D* Lite, and numerous variations and enhancements. By simulating these algorithms, we can explore their core principles, assess their effectiveness in different scenarios, and compare their performance to determine which algorithm suits a given problem best.
+Simulating motion planning algorithms encompasses a range of techniques and methodologies, depending on the specific algorithm being studied.
+Some popular algorithms include Rapidly-exploring Random Trees (RRT), Probabilistic Roadmaps (PRM), A*, D* Lite, and numerous variations and enhancements.
+By simulating these algorithms, we can explore their core principles, assess their effectiveness in different scenarios, and compare their performance to determine which algorithm suits a given problem best.
 
-Mathematical simulations allow us to investigate the convergence properties of motion planning algorithms. We can study how these algorithms explore and navigate through configuration spaces, evaluating their ability to find feasible solutions efficiently. Additionally, simulations provide a means to analyze the impact of different factors, such as environment complexity, obstacle density, robot dynamics, or sensor noise, on the algorithms' performance and robustness.
+Mathematical simulations allow us to investigate the convergence properties of motion planning algorithms.
+We can study how these algorithms explore and navigate through configuration spaces, evaluating their ability to find feasible solutions efficiently.
+Additionally, simulations provide a means to analyze the impact of different factors, such as environment complexity, obstacle density, robot dynamics, or sensor noise, on the algorithms' performance and robustness.
 
-Through simulations, we can also study the computational complexity of motion planning algorithms. By measuring metrics such as computation time, memory usage, or number of collision checks, we can assess the algorithms' efficiency and scalability. Understanding the computational demands of different algorithms helps guide their selection for real-world applications, where speed, memory constraints, or real-time capabilities are critical.
+Through simulations, we can also study the computational complexity of motion planning algorithms.
+By measuring metrics such as computation time, memory usage, or number of collision checks, we can assess the algorithms' efficiency and scalability. Understanding the computational demands of different algorithms helps guide their selection for real-world applications, where speed, memory constraints, or real-time capabilities are critical.
 
-Moreover, simulations provide a platform to explore algorithmic variations and improvements. By introducing modifications to existing algorithms or incorporating new techniques, we can assess their impact on performance, convergence, and optimality. This iterative process of simulation-driven algorithm development enables us to refine and enhance motion planning techniques.
+Moreover, simulations provide a platform to explore algorithmic variations and improvements.
+By introducing modifications to existing algorithms or incorporating new techniques, we can assess their impact on performance, convergence, and optimality.
+This iterative process of simulation-driven algorithm development enables us to refine and enhance motion planning techniques.
 
-In this study, we embark on a mathematical exploration of motion planning algorithms through simulation. By simulating various algorithms, analyzing their mathematical properties, and evaluating their performance under different scenarios, we aim to deepen our understanding of these algorithms, their limitations, and their suitability for different robotic applications. Through rigorous experimentation, mathematical analysis, and visualization of simulation results, we endeavor to advance the field of motion planning and contribute to the development of efficient and robust algorithms for autonomous systems.
+In this study, we embark on a mathematical exploration of motion planning algorithms through simulation. By simulating various algorithms, analyzing their mathematical properties, and evaluating their performance under different scenarios, we aim to deepen our understanding of these algorithms, their limitations, and their suitability for different robotic applications.
+Through rigorous experimentation, mathematical analysis, and visualization of simulation results, we endeavor to advance the field of motion planning and contribute to the development of efficient and robust algorithms for autonomous systems.
 
-As it has been stated in chapter \ref{ch:basic-definitions-and-theorems} the DOF and the dimension of the configuration space of a robot will coincide, there by making the effectiveness of an algorithm being influenced by the DOF of a robot. Higher DOF systems generally present more complex planning and control challenges. Algorithms designed to handle specific DOF configurations or adapted to handle higher DOF systems need to consider the increased complexity and search space and the choice of algorithm should align with the specific DOF requirements and capabilities of the robot to ensure effective performance in accomplishing the desired tasks.
+As it has been stated in chapter \ref{ch:basic-definitions-and-theorems} the DOF and the dimension of the configuration space of a robot will coincide, there by making the effectiveness of an algorithm being influenced by the DOF of a robot.
+Higher DOF systems generally present more complex planning and control challenges.
+Algorithms designed to handle specific DOF configurations or adapted to handle higher DOF systems need to consider the increased complexity and search space and the choice of algorithm should align with the specific DOF requirements and capabilities of the robot to ensure effective performance in accomplishing the desired tasks.
 
 As a practical the A* and the RRT algorithms which are graph based and sample based algorithms respectively, will be studied based on their topological complexities, computational complexity, etc. in this chapter.
 
 \section{The RRT Algorithm}
 
-RRT stands for Rapidly-exploring Random Tree. It is a sampling-based algorithm for path planning. The RRT algorithm starts with a tree of nodes, with the start node as the root node. Then, it iteratively samples a random point in the search space and connects it to the nearest node in the tree. If the new node is not in collision with any obstacles, it is added to the tree. The algorithm continues iterating until it finds a path from the start node to the goal node.
+RRT stands for Rapidly-exploring Random Tree.
+It is a sampling-based algorithm for path planning.
+The RRT algorithm starts with a tree of nodes, with the start node as the root node.
+Then, it iteratively samples a random point in the search space and connects it to the nearest node in the tree.
+If the new node is not in collision with any obstacles, it is added to the tree.
+The algorithm continues iterating until it finds a path from the start node to the goal node.
 
-The RRT algorithm is a simple and efficient algorithm for path planning. It is not guaranteed to find a path, but it is very likely to find a path if the search space is not too large. The RRT algorithm is also very easy to implement.
+The RRT algorithm is a simple and efficient algorithm for path planning.
+It is not guaranteed to find a path, but it is very likely to find a path if the search space is not too large.
+The RRT algorithm is also very easy to implement.
 
 
 \begin{algorithm}
@@ -42,7 +62,11 @@ The RRT algorithm is a simple and efficient algorithm for path planning. It is n
     \end{algorithmic}
 \end{algorithm}
 
-The algorithm starts by initializing a tree $T$ with the start node $s$. Then, it iterates through a loop, sampling a random point $q$ in the search space and finding the nearest node $n$ in $T$ to $q$. The algorithm then steers $n$ towards $q$ algorithm then steers $m$. If there is no collision between $m$ nd the obstacles, the algorithm adds $m$ to $T$. The algorithm continues iterating until it finds a path from $s$ to the the goal node in $T$.
+The algorithm starts by initializing a tree $T$ with the start node $s$.
+Then, it iterates through a loop, sampling a random point $q$ in the search space and finding the nearest node $n$ in $T$ to $q$.
+The algorithm then steers $n$ towards $q$ algorithm then steers $m$.
+If there is no collision between $m$ nd the obstacles, the algorithm adds $m$ to $T$.
+The algorithm continues iterating until it finds a path from $s$ to the the goal node in $T$.
 
 
 
