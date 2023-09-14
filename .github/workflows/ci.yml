@@ -17,3 +17,4 @@ jobs:
         with:
           root_file: main.tex
           latexmk_use_lualatex: true
+          args: "-outdir=build"
